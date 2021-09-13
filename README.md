@@ -5,11 +5,9 @@
 
 ## Getting Started
 
-Clone project and enter in folder:
+Clone project and enter in folder
 
-```
 Run npm install:
-
 ```
 npm i
 ```
