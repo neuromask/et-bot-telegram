@@ -24,11 +24,11 @@ npm start
 
 ## Bot Commands
 
- ```/help``` - List of commands
- ```/social``` - ElectroTallinn social media links
- ```/ali``` - Aliexpress links
- ```/map``` - Charging sockets map
- ```/pic``` <name> - Search for image
+- ```/help``` - List of commands
+- ```/social``` - ElectroTallinn social media links
+- ```/ali``` - Aliexpress links
+- ```/map``` - Charging sockets map
+-  ```/pic``` <name> - Search for image
 
 ## License
 
