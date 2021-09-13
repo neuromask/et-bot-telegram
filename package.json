@@ -1,0 +1,24 @@
+{
+  "name": "etbot",
+  "description": "ElectroBot",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": "14"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "config": "^3.3.6",
+    "dotenv": "^10.0.0",
+    "duckduckgo-images-api": "^1.0.5",
+    "mysql": "^2.18.1",
+    "telegraf": "^4.4.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.6.0"
+  },
+  "private": true
+}
