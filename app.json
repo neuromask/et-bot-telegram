@@ -2,7 +2,7 @@
     "apps": [
         {
             "name": "etbot",
-            "script": "index.js",
+            "script": "app.js",
             "watch": true,
             "cwd": "/data02/virt32423/domeenid/www.nuforms.com/electrotallinnbot"
         }

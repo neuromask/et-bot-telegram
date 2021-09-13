@@ -26,9 +26,9 @@ const localizedStrings = {
     'ru': '[Предупреждение] Эта команда только для приватного чата. Поговорим наедине - @ElectroTallinnBot :)'
   },
   titleText:{
-    'en':'⚠️ Before adding a point, make sure that the outlet is working and there is no such point on the map!\n\n1️⃣ *Name*\nPlease name the place, write address, company or street name near the object.',
-    'et-ee':'⚠️ Enne punkti lisamist veenduge, et pistikupesa töötab ja kaardil sellist punkti pole!\n\n1️⃣ *Nimi*\nPalun nimatage koht, kirjutage objekti lähedale aadress, ettevõtte või tänava nimi.',
-    'ru':'⚠️ Перед добавлением точки убедитесь, что что розетка работает и такой точки нет на карте!\n\n1️⃣ *Название*\nНазовите место: Укажите адрес, компанию или улицу рядом с объектом.'
+    'en':'⚠️ Before adding a point, please make sure that the outlet is working and same point has not been previously added to the map!\n\n1️⃣ *Name*\nPlease name the place, write address, company or street name near the object.',
+    'et-ee':'⚠️ Enne punkti lisamist veenduge, et pistikupesa töötab ja et sellist punkti pole kaardile varem lisatud.!\n\n1️⃣ *Nimi*\nPalun nimatage koht, kirjutage objekti lähedale aadress, ettevõtte või tänava nimi.',
+    'ru':'⚠️ Перед добавлением точки убедитесь в тои, что розетка работает и такая точка уже не добавлена ранее на карту!\n\n1️⃣ *Название*\nНазовите место: Укажите адрес, компанию или улицу рядом с объектом.'
   },
   descriptionText:{
       'en':'2️⃣ *Desription*\nPlease describe place. Is it outside or inside? How to find it in place.',
