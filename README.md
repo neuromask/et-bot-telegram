@@ -17,19 +17,16 @@ Enjoy:
 ```
 npm start
 ```
-
 ## Built With
 
 - [Telegraf](https://telegraf.js.org/) - Modern Telegram Bot API framework for Node.js
-
 ## Bot Commands
-
-- ```/help``` - List of commands
+- ```/add``` - Add point to sockets map
+- ```/map``` - Charging sockets map
 - ```/social``` - ElectroTallinn social media links
 - ```/ali``` - Aliexpress links
-- ```/map``` - Charging sockets map
 -  ```/pic``` <name> - Search for image
-
+- ```/help``` - List of commands
 ## License
 
 This project is licensed under the MIT License.
