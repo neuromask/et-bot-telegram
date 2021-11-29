@@ -3,15 +3,6 @@ const fileManagerHelper = require("./utils/FileManagerHelper.js");
 const db = require("./db.js");
 const axios = require('axios').default;
 const { v4: uuidv4 } = require('uuid');
-require('dotenv').config();
-// MySQL
-const mysql = require('mysql');
-const connection = mysql.createPool({
-  host      : process.env.DB_HOST,
-  user      : process.env.DB_USER,
-  password  : process.env.DB_PASS,
-  database  : process.env.DB_NAME
-});
 
 let langCode, userName;
 
@@ -53,9 +44,9 @@ const localizedStrings = {
     'ru': '5️⃣ *Фото*\nСделайте фото товара или загрузите из библиотеки телефона.'
   },
   finalText: {
-    'en': '👍 <b>Thank you</b> 👍\nProduct will be approved in 24h and added to the <a href="https://app.electrotallinn.ee/market">map</a>.',
-    'et-ee': '👍 <b>Täname</b> 👍\nKaup kinnitatakse 24 tunni jooksul ja lisatakse <a href="https://app.electrotallinn.ee/market">kaardile</a>.',
-    'ru': '👍 <b>Спасибо</b> 👍\nТовар будет одобрен в течение 24 часов и добавлен на <a href="https://app.electrotallinn.ee/market">карту</a>.'
+    'en': '👍 <b>Thank you</b> 👍\nProduct will be approved in 24h and added to the <a href="https://app.electrotallinn.ee/market">market</a>.',
+    'et-ee': '👍 <b>Täname</b> 👍\nKaup kinnitatakse 24 tunni jooksul ja lisatakse <a href="https://app.electrotallinn.ee/market">turule</a>.',
+    'ru': '👍 <b>Спасибо</b> 👍\nТовар будет одобрен в течение 24 часов и добавлен в <a href="https://app.electrotallinn.ee/market">маркет</a>.'
   },
   leaveText: {
     'en': 'Ended.',
@@ -177,9 +168,9 @@ module.exports = {
     const imageHandler = new Composer()
     imageHandler.on('photo', async ctx => {
       bot.telegram.editMessageReplyMarkup(ctx.chat.id, ctx.message.message_id-1, reply_markup={})
-      
+
       // Get Image
-      const getUrl = await ctx.telegram.getFileLink(ctx.message.photo[1].file_id);
+      const getUrl = await ctx.telegram.getFileLink(ctx.message.photo[3].file_id);
       const imgUrl = getUrl.href;
       console.log("IMG URL: " + imgUrl + " by USER: " + userName);
 
