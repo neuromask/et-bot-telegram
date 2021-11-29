@@ -3,12 +3,9 @@ const { image_search, image_search_generator } = require("duckduckgo-images-api"
 const wizardMap = require("./wizardMap.js");
 const wizardMarket = require("./wizardMarket.js");
 require('dotenv').config();
-//const bot = new Telegraf(process.env.TELEGRAM_TOKEN);
+const bot = new Telegraf(process.env.TELEGRAM_TOKEN);
 const db = require("./db.js");
 
-//temp test bot
-const token = "1618791599:AAG-vaRh389dVh_9GwR5vqYXXv5yqwhYMmE"
-const bot = new Telegraf(token);
 
 // ------------- Wizards ------------- //
 
