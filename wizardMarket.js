@@ -4,8 +4,6 @@ const db = require("./db.js");
 const axios = require('axios').default;
 const { v4: uuidv4 } = require('uuid');
 
-let langCode, userName;
-
 const localizedStrings = {
   'en': {
     'chatTypeText': '[Warning] This command only for private chat. Lets talk in private - @ElectroTallinnBot :)',
@@ -23,8 +21,7 @@ const localizedStrings = {
       'ACCESSORIES':'🚥 [Accessories]',
       'EQUIPMENT':'👖 [Equipment]',
       'OTHER':'⚡ [Other]'
-    },
-    'leaveText': 'Ended'
+    }
   },
   'ru': {
     'chatTypeText': '[Предупреждение] Эта команда только для приватного чата. Поговорим наедине - @ElectroTallinnBot :)',
@@ -42,8 +39,7 @@ const localizedStrings = {
       'ACCESSORIES':'🚥 [Аксусуары]',
       'EQUIPMENT':'👖 [Экипировка]',
       'OTHER':'⚡ [Другое]'
-    },
-    'leaveText': 'Ended'
+    }
   },
   'et-ee': {
     'chatTypeText': '[Hoiatus] See käsk on mõeldud ainult privaatseks vestluseks. Räägime privaatselt - @ElectroTallinnBot :)',
@@ -61,8 +57,7 @@ const localizedStrings = {
       'ACCESSORIES':'🚥 [Aksessuaarid]',
       'EQUIPMENT':'👖 [Varustus]',
       'OTHER':'⚡ [Muud]'
-    },
-    'leaveText': 'Ended'
+    }
   }
 }
 
@@ -78,12 +73,13 @@ module.exports = {
     const exitKeyboard = {
       reply_markup: JSON.stringify({
         inline_keyboard: [
+          [{ text: "Login", login_url: {url:'https://app.electrotallinn.ee', bot_username: 'ElectroTallinnBot', request_write_access: true} }],
           [{ text: "❌", callback_data: "exit" }]
         ]
       })
     };
-    getCategoryKeyboard = () => {
-      let buttons = marketProductCategories.map((category) => {return [{text: localizedStrings[langCode]['categoryButtonText'][category], callback_data: category}]})
+    getCategoryKeyboard = (ctx) => {
+      let buttons = marketProductCategories.map((category) => {return [{text: localizedStrings[ctx.scene.state.locale]['categoryButtonText'][category], callback_data: category}]})
       return {
         reply_markup: JSON.stringify({
           inline_keyboard: [
@@ -95,48 +91,50 @@ module.exports = {
     }
     const marketProductCategories = ["TRANSPORT", "SPARE_PARTS", "ACCESSORIES", "EQUIPMENT", "OTHER"]
 
-    translate = (path) => {
+    translate = (path, ctx) => {
       let parts = path.split('.')
-      return parts.reduce((previousValue, currentValue) => previousValue[currentValue], localizedStrings[langCode])
+      return parts.reduce((previousValue, currentValue) => previousValue[currentValue], localizedStrings[ctx.scene.state.locale])
     }
 
     // scene steps
     const titleHandler = new Composer()
     titleHandler.on('text', async ctx => {
-      console.log("M1: " + ctx.message.text + " by USER: " + userName);
+      console.log("M1: " + ctx.message.text + " by USER: " + ctx.scene.state.userFirstName);
       ctx.scene.state.title = ctx.message.text;
-      bot.telegram.editMessageReplyMarkup(ctx.chat.id, ctx.message.message_id-1, reply_markup={})
-      await ctx.replyWithMarkdown(translate('descriptionText'), exitKeyboard);
+      bot.telegram.editMessageReplyMarkup(ctx.chat.id, ctx.scene.state.lastBotMsgId, reply_markup={})
+      let payload = await ctx.replyWithMarkdown(translate('descriptionText', ctx), exitKeyboard)
+      ctx.scene.state.lastBotMsgId = payload.message_id
       return ctx.wizard.next();
     })
 
     const descriptionHandler = new Composer()
     descriptionHandler.on('text', async ctx => {
-      console.log("M2: " + ctx.message.text + " by USER: " + userName);
+      console.log("M2: " + ctx.message.text + " by USER: " + ctx.scene.state.userFirstName);
       ctx.scene.state.description = ctx.message.text;
-      bot.telegram.editMessageReplyMarkup(ctx.chat.id, ctx.message.message_id-1, reply_markup={})
-      await ctx.replyWithMarkdown(translate('priceText'), exitKeyboard);
+      bot.telegram.editMessageReplyMarkup(ctx.chat.id, ctx.scene.state.lastBotMsgId, reply_markup={})
+      let payload = await ctx.replyWithMarkdown(translate('priceText', ctx), exitKeyboard);
+      ctx.scene.state.lastBotMsgId = payload.message_id
       return ctx.wizard.next();
     });
 
     const priceHandler = new Composer()
     priceHandler.on('text', async ctx => {
-      console.log("M3: " + ctx.message.text + " by USER: " + userName);
+      console.log("M3: " + ctx.message.text + " by USER: " + ctx.scene.state.userFirstName);
       ctx.scene.state.price = ctx.message.text;
-      bot.telegram.editMessageReplyMarkup(ctx.chat.id, ctx.message.message_id-1, reply_markup={})
-      await ctx.replyWithMarkdown(translate('categoryText'), getCategoryKeyboard());
+      bot.telegram.editMessageReplyMarkup(ctx.chat.id, ctx.scene.state.lastBotMsgId, reply_markup={})
+      let payload = await ctx.replyWithMarkdown(translate('categoryText', ctx), getCategoryKeyboard(ctx));
+      ctx.scene.state.lastBotMsgId = payload.message_id
       return ctx.wizard.next();
     });
     // buttons to select
     const categoryHandler = new Composer()
     categoryHandler.on("callback_query", async ctx => {
       //bot.telegram.answerCallbackQuery(ctx.update.callback_query.id, {text: 'No news'});
-      //ctx.answerCbQuery()
       ctx.editMessageReplyMarkup(reply_markup={})
-      console.log("CATEGORY: " + ctx.update.callback_query.data + " by USER: " + userName);
+      console.log("CATEGORY: " + ctx.update.callback_query.data + " by USER: " + ctx.scene.state.userFirstName);
       ctx.scene.state.category = ctx.update.callback_query.data;
-      await bot.telegram.sendMessage(ctx.chat.id, translate('categoryButtonText.'+ctx.update.callback_query.data));
-      await ctx.replyWithMarkdown(translate('photoText'), exitKeyboard);
+      await bot.telegram.sendMessage(ctx.chat.id, translate('categoryButtonText.'+ctx.update.callback_query.data, ctx));
+      await ctx.replyWithMarkdown(translate('photoText', ctx), exitKeyboard);
       return ctx.wizard.next();
     });
 
@@ -147,7 +145,7 @@ module.exports = {
       // Get Image
       const getUrl = await ctx.telegram.getFileLink(ctx.message.photo[3].file_id);
       const imgUrl = getUrl.href;
-      console.log("IMG URL: " + imgUrl + " by USER: " + userName);
+      console.log("IMG URL: " + imgUrl + " by USER: " + ctx.scene.state.userFirstName);
 
       const response = await axios.get(imgUrl, { responseType: 'arraybuffer' })
       const b64image = Buffer.from(response.data, 'binary').toString('base64')
@@ -168,8 +166,8 @@ module.exports = {
       await db.query(sqlFile, paramsFile);
 
       await ctx.replyWithHTML(translate('finalText'));
-      await bot.telegram.sendMessage(371176498, `*DONE:*\n${userName} добавил товар, ${ctx.scene.state.title}, ${ctx.scene.state.description}. Язык [ ${langCode} ]`, { parse_mode: "Markdown" });
-      console.log("MARKET | DONE by USER: " + userName);
+      await bot.telegram.sendMessage(371176498, `*DONE:*\n${ctx.scene.state.userFirstName} добавил товар, ${ctx.scene.state.title}, ${ctx.scene.state.description}. Язык [ ${ctx.scene.state.locale} ]`, { parse_mode: "Markdown" });
+      console.log("MARKET | DONE by USER: " + ctx.scene.state.userFirstName);
 
       return ctx.scene.leave();
     });
@@ -177,13 +175,18 @@ module.exports = {
 
     // scene
     const marketScene = new WizardScene('marketScene', titleHandler, descriptionHandler, priceHandler, categoryHandler, imageHandler);
-    marketScene.enter(ctx => {
-      ctx.replyWithMarkdown(translate('titleText'), exitKeyboard)
-      console.log(ctx)
+    marketScene.enter(async ctx => {
+      console.log(ctx.message.chat)
+      ctx.scene.state.userFirstName = ctx.update.message.chat.first_name;
+      ctx.scene.state.locale = ctx.message.from.language_code;
+      console.log("MARKET | STARTED by USER: " + ctx.scene.state.userFirstName);
+      bot.telegram.sendMessage(371176498, `*MARKET | STARTED:*\nНачал, [ ${ctx.scene.state.userFirstName} ], язык [ ${ctx.scene.state.locale} ]`, { parse_mode: "Markdown" });
+      let payload = await ctx.replyWithMarkdown(translate('titleText', ctx), exitKeyboard);
+      ctx.scene.state.lastBotMsgId = payload.message_id;
     });
     marketScene.leave(ctx => {
-      console.log("MARKET | ABORTED by USER: " + userName)
-      bot.telegram.sendMessage(ctx.chat.id, translate('leaveText'), remove_keyboard)
+      console.log("MARKET | ABORTED by USER: " + ctx.scene.state.userFirstName)
+      bot.telegram.sendMessage(ctx.chat.id, translate('leaveText', ctx), remove_keyboard)
     });
 
     return marketScene
@@ -191,29 +194,13 @@ module.exports = {
 
   initCommand: bot => {
 
-    // get user lang
-    function setLang(ctx) {
-      const userLang = ctx.update.message.from.language_code;
-      if (userLang == "ru" || userLang == "et-ee") {
-        langCode = ctx.message.from.language_code;
-      } else {
-        langCode = "en";
-      }
-      console.log("LANG: " + langCode + " by USER: " + userName);
-    }
-
     // command to start
     bot.command("/sell", async ctx => {
-      userName = ctx.update.message.chat.first_name;
-      console.log("MARKET | STARTED by USER: " + userName);
       if (ctx.message.chat.type != 'private') {
-        bot.telegram.sendMessage(ctx.chat.id, translate('chatTypeText'));
+        bot.telegram.sendMessage(ctx.chat.id, translate('chatTypeText', ctx));
       } else {
-        ctx.scene.leave();
         ctx.scene.enter('marketScene');
-        setLang(ctx);
       }
-      bot.telegram.sendMessage(371176498, `*MARKET | STARTED:*\nНачал, [ ${userName} ], язык [ ${langCode} ]`, { parse_mode: "Markdown" });
     });
 
   }
