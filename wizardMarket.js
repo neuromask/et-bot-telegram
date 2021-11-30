@@ -6,58 +6,17 @@ const { v4: uuidv4 } = require('uuid');
 
 let langCode, userName;
 
-// Language based answers
 const localizedStrings = {
-  chatTypeText: {
-    'en': '[Warning] This command only for private chat. Lets talk in private - @ElectroTallinnBot :)',
-    'et-ee': '[Hoiatus] See käsk on mõeldud ainult privaatseks vestluseks. Räägime privaatselt - @ElectroTallinnBot :)',
-    'ru': '[Предупреждение] Эта команда только для приватного чата. Поговорим наедине - @ElectroTallinnBot :)'
-  },
-  titleText: {
-    'en': '⚠️ Before adding a product, make sure you have added a username in your Telegram settings!\n\n1️⃣ *Name* \nName: Enter the name of the product.',
-    'et-ee': '⚠️ Enne toote lisamist veendu, et oled Telegrami seadetes lisanud kasutajanime!\n\n1️⃣ *Nimi*\nSisesta toote nimi.',
-    'ru': '⚠️ Перед добавлением товара убедитесь в том, что у вас добавлено имя пользователя в настройках Telegram!\n\n1️⃣ *Название*\nНазвание: Укажите наименование товара.'
-  },
-  descriptionText: {
-    'en': '2️⃣ *Desription*\nDescribe the product. Condition, characteristics, wear, etc.',
-    'et-ee': '2️⃣ *Kirjeldus*\nKirjeldage toodet. Seisukord, omadused, kulumine jne.',
-    'ru': '2️⃣ *Описание*\nОпишите товар. Состояние, характеристика, износ и т.д.'
-  },
-  priceText: {
-    'en': '3️⃣ *Price*\nWrite product price in euros.',
-    'et-ee': '3️⃣ *Hind*\nMärkige kauba hind eurodes.',
-    'ru': '3️⃣ *Цена*\nУкажите цену товара в евро.'
-  },
-  categoryText: {
-    'en': '4️⃣ *Category*\nSelect a product category.',
-    'et-ee': '4️⃣ *Kategooria*\nValige tootekategooria.',
-    'ru': '4️⃣ *Категория*\nВыберите категорию товара.'
-  },
-  categoryButtonText: {
-    'en': '4️⃣ *Category*\nSelect a product category.',
-    'et-ee': '4️⃣ *Kategooria*\nValige tootekategooria.',
-    'ru': '4️⃣ *Категория*\nВыберите категорию товара.'
-  },
-  photoText: {
-    'en': '5️⃣ *Photo*\nTake a photo of the product or download from your phone library.',
-    'et-ee': '5️⃣ *Foto*\nTehke tootest foto või laadige alla oma telefoniraamatukogust.',
-    'ru': '5️⃣ *Фото*\nСделайте фото товара или загрузите из библиотеки телефона.'
-  },
-  finalText: {
-    'en': '👍 <b>Thank you</b> 👍\nProduct will be approved in 24h and added to the <a href="https://app.electrotallinn.ee/market">market</a>.',
-    'et-ee': '👍 <b>Täname</b> 👍\nKaup kinnitatakse 24 tunni jooksul ja lisatakse <a href="https://app.electrotallinn.ee/market">turule</a>.',
-    'ru': '👍 <b>Спасибо</b> 👍\nТовар будет одобрен в течение 24 часов и добавлен в <a href="https://app.electrotallinn.ee/market">маркет</a>.'
-  },
-  leaveText: {
-    'en': 'Ended.',
-    'et-ee': 'Lõppenud.',
-    'ru': 'Завершено.'
-  }
-}
-
-const localized2Strings = {
   'en': {
+    'chatTypeText': '[Warning] This command only for private chat. Lets talk in private - @ElectroTallinnBot :)',
+    'titleText': '⚠️ Before adding a product, make sure you have added a username in your Telegram settings!\n\n1️⃣ *Name* \nName: Enter the name of the product.',
     'descriptionText': '2️⃣ *Desription*\nDescribe the product. Condition, characteristics, wear, etc.',   
+    'priceText': '3️⃣ *Price*\nWrite product price in euros.',
+    'categoryText': '4️⃣ *Category*\nSelect a product category.',
+    'categoryButtonText': '4️⃣ *Category*\nSelect a product category.',
+    'photoText': '5️⃣ *Photo*\nTake a photo of the product or download from your phone library.',
+    'finalText': '👍 <b>Thank you</b> 👍\nProduct will be approved in 24h and added to the <a href="https://app.electrotallinn.ee/market">market</a>.',
+    'leaveText': 'Ended.',
     'categoryButtonText': {
       'TRANSPORT': '🛴 [Transport]',
       'SPARE_PARTS':'⚙️ [Spare parts]',
@@ -68,24 +27,40 @@ const localized2Strings = {
     'leaveText': 'Ended'
   },
   'ru': {
+    'chatTypeText': '[Предупреждение] Эта команда только для приватного чата. Поговорим наедине - @ElectroTallinnBot :)',
+    'titleText': '⚠️ Перед добавлением товара убедитесь в том, что у вас добавлено имя пользователя в настройках Telegram!\n\n1️⃣ *Название*\nНазвание: Укажите наименование товара.',
     'descriptionText': '2️⃣ *Описание*\nОпишите товар. Состояние, характеристика, износ и т.д.',
+    'priceText': '3️⃣ *Цена*\nУкажите цену товара в евро.',
+    'categoryText': '4️⃣ *Категория*\nВыберите категорию товара.',
+    'categoryButtonText': '4️⃣ *Категория*\nВыберите категорию товара.',
+    'photoText': '5️⃣ *Фото*\nСделайте фото товара или загрузите из библиотеки телефона.',
+    'finalText': '👍 <b>Спасибо</b> 👍\nТовар будет одобрен в течение 24 часов и добавлен в <a href="https://app.electrotallinn.ee/market">маркет</a>.',
+    'leaveText': 'Завершено.',
     'categoryButtonText': {
       'TRANSPORT': '🛴 [Транспорт]',
-      'SPARE_PARTS':'⚙️ [Spare parts]',
-      'ACCESSORIES':'🚥 [Accessories]',
-      'EQUIPMENT':'👖 [Equipment]',
-      'OTHER':'⚡ [Other]'
+      'SPARE_PARTS':'⚙️ [Комплектующие]',
+      'ACCESSORIES':'🚥 [Аксусуары]',
+      'EQUIPMENT':'👖 [Экипировка]',
+      'OTHER':'⚡ [Другое]'
     },
     'leaveText': 'Ended'
   },
   'et-ee': {
+    'chatTypeText': '[Hoiatus] See käsk on mõeldud ainult privaatseks vestluseks. Räägime privaatselt - @ElectroTallinnBot :)',
+    'titleText': '⚠️ Enne toote lisamist veendu, et oled Telegrami seadetes lisanud kasutajanime!\n\n1️⃣ *Nimi*\nSisesta toote nimi.',
     'descriptionText': '2️⃣ *Kirjeldus*\nKirjeldage toodet. Seisukord, omadused, kulumine jne.',
+    'priceText': '3️⃣ *Hind*\nMärkige kauba hind eurodes.',
+    'categoryText': '4️⃣ *Kategooria*\nValige tootekategooria.',
+    'categoryButtonText': '4️⃣ *Kategooria*\nValige tootekategooria.',
+    'photoText': '5️⃣ *Foto*\nTehke tootest foto või laadige alla oma telefoniraamatukogust.',
+    'finalText': '👍 <b>Täname</b> 👍\nKaup kinnitatakse 24 tunni jooksul ja lisatakse <a href="https://app.electrotallinn.ee/market">turule</a>.',
+    'leaveText': 'Lõppenud.',
     'categoryButtonText': {
       'TRANSPORT': '🛴 [Transport]',
-      'SPARE_PARTS':'⚙️ [Spare parts]',
-      'ACCESSORIES':'🚥 [Accessories]',
-      'EQUIPMENT':'👖 [Equipment]',
-      'OTHER':'⚡ [Other]'
+      'SPARE_PARTS':'⚙️ [Komponendid]',
+      'ACCESSORIES':'🚥 [Aksessuaarid]',
+      'EQUIPMENT':'👖 [Varustus]',
+      'OTHER':'⚡ [Muud]'
     },
     'leaveText': 'Ended'
   }
@@ -108,7 +83,7 @@ module.exports = {
       })
     };
     getCategoryKeyboard = () => {
-      let buttons = marketProductCategories.map((category) => {return [{text: localized2Strings[langCode]['categoryButtonText'][category], callback_data: category}]})
+      let buttons = marketProductCategories.map((category) => {return [{text: localizedStrings[langCode]['categoryButtonText'][category], callback_data: category}]})
       return {
         reply_markup: JSON.stringify({
           inline_keyboard: [
@@ -122,7 +97,7 @@ module.exports = {
 
     translate = (path) => {
       let parts = path.split('.')
-      return parts.reduce((previousValue, currentValue) => previousValue[currentValue], localized2Strings[langCode])
+      return parts.reduce((previousValue, currentValue) => previousValue[currentValue], localizedStrings[langCode])
     }
 
     // scene steps
@@ -140,7 +115,7 @@ module.exports = {
       console.log("M2: " + ctx.message.text + " by USER: " + userName);
       ctx.scene.state.description = ctx.message.text;
       bot.telegram.editMessageReplyMarkup(ctx.chat.id, ctx.message.message_id-1, reply_markup={})
-      await ctx.replyWithMarkdown(localizedStrings['priceText'][langCode], exitKeyboard);
+      await ctx.replyWithMarkdown(translate('priceText'), exitKeyboard);
       return ctx.wizard.next();
     });
 
@@ -149,7 +124,7 @@ module.exports = {
       console.log("M3: " + ctx.message.text + " by USER: " + userName);
       ctx.scene.state.price = ctx.message.text;
       bot.telegram.editMessageReplyMarkup(ctx.chat.id, ctx.message.message_id-1, reply_markup={})
-      await ctx.replyWithMarkdown(localizedStrings['categoryText'][langCode], getCategoryKeyboard());
+      await ctx.replyWithMarkdown(translate('categoryText'), getCategoryKeyboard());
       return ctx.wizard.next();
     });
     // buttons to select
@@ -161,7 +136,7 @@ module.exports = {
       console.log("CATEGORY: " + ctx.update.callback_query.data + " by USER: " + userName);
       ctx.scene.state.category = ctx.update.callback_query.data;
       await bot.telegram.sendMessage(ctx.chat.id, translate('categoryButtonText.'+ctx.update.callback_query.data));
-      await ctx.replyWithMarkdown(localizedStrings['photoText'][langCode], exitKeyboard);
+      await ctx.replyWithMarkdown(translate('photoText'), exitKeyboard);
       return ctx.wizard.next();
     });
 
@@ -192,7 +167,7 @@ module.exports = {
       let paramsFile = [result.insertId, fileName];
       await db.query(sqlFile, paramsFile);
 
-      await ctx.replyWithHTML(localizedStrings['finalText'][langCode]);
+      await ctx.replyWithHTML(translate('finalText'));
       await bot.telegram.sendMessage(371176498, `*DONE:*\n${userName} добавил товар, ${ctx.scene.state.title}, ${ctx.scene.state.description}. Язык [ ${langCode} ]`, { parse_mode: "Markdown" });
       console.log("MARKET | DONE by USER: " + userName);
 
@@ -203,12 +178,12 @@ module.exports = {
     // scene
     const marketScene = new WizardScene('marketScene', titleHandler, descriptionHandler, priceHandler, categoryHandler, imageHandler);
     marketScene.enter(ctx => {
-      ctx.replyWithMarkdown(localizedStrings['titleText'][langCode], exitKeyboard)
+      ctx.replyWithMarkdown(translate('titleText'), exitKeyboard)
       console.log(ctx)
     });
     marketScene.leave(ctx => {
       console.log("MARKET | ABORTED by USER: " + userName)
-      bot.telegram.sendMessage(ctx.chat.id, localizedStrings['leaveText'][langCode], remove_keyboard)
+      bot.telegram.sendMessage(ctx.chat.id, translate('leaveText'), remove_keyboard)
     });
 
     return marketScene
@@ -232,7 +207,7 @@ module.exports = {
       userName = ctx.update.message.chat.first_name;
       console.log("MARKET | STARTED by USER: " + userName);
       if (ctx.message.chat.type != 'private') {
-        bot.telegram.sendMessage(ctx.chat.id, localizedStrings['chatTypeText'][langCode]);
+        bot.telegram.sendMessage(ctx.chat.id, translate('chatTypeText'));
       } else {
         ctx.scene.leave();
         ctx.scene.enter('marketScene');
