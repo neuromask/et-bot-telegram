@@ -4,6 +4,7 @@ const db = require("./db.js");
 const axios = require('axios').default;
 const { v4: uuidv4 } = require('uuid');
 
+// Language based answers
 const localizedStrings = {
   'en': {
     'chatTypeText': '[Warning] This command only for private chat. Lets talk in private - @ElectroTallinnBot :)',
@@ -66,14 +67,13 @@ module.exports = {
 
     // markup elements
     //const exitKeyboard = Markup.keyboard(['Exit']).resize().oneTime();
-    const remove_keyboard = Markup.inlineKeyboard([])
+    //const remove_keyboard = Markup.inlineKeyboard([])
     //const exitKeyboard = Markup.inlineKeyboard([
     //  Markup.button.callback('❌', 'exit')
     //])
     const exitKeyboard = {
       reply_markup: JSON.stringify({
         inline_keyboard: [
-          [{ text: "Login", login_url: {url:'https://app.electrotallinn.ee', bot_username: 'ElectroTallinnBot', request_write_access: true} }],
           [{ text: "❌", callback_data: "exit" }]
         ]
       })
@@ -126,6 +126,7 @@ module.exports = {
       ctx.scene.state.lastBotMsgId = payload.message_id
       return ctx.wizard.next();
     });
+
     // buttons to select
     const categoryHandler = new Composer()
     categoryHandler.on("callback_query", async ctx => {
@@ -140,7 +141,6 @@ module.exports = {
 
     const imageHandler = new Composer()
     imageHandler.on('photo', async ctx => {
-      bot.telegram.editMessageReplyMarkup(ctx.chat.id, ctx.message.message_id-1, reply_markup={})
 
       // Get Image
       const getUrl = await ctx.telegram.getFileLink(ctx.message.photo[3].file_id);
@@ -150,6 +150,10 @@ module.exports = {
       const response = await axios.get(imgUrl, { responseType: 'arraybuffer' })
       const b64image = Buffer.from(response.data, 'binary').toString('base64')
 
+
+    });
+/*
+    const finalSave = () => {
       // product creation in DB
       let sql = "INSERT INTO market_products (user_uin, name, description, price, status, date_created, category) VALUES (?, ?, ?, ?, ?, ?, ?)";
       let params = [ctx.message.from.id, ctx.scene.state.title, ctx.scene.state.description, ctx.scene.state.price, 'NEW', new Date(), ctx.scene.state.category];
@@ -158,27 +162,36 @@ module.exports = {
 
       // image creation in DB
       let fileName = uuidv4() + '.jpg';
-      let token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiLQkNC70LXQutGB0LDQvdC00YAiLCJ1aW4iOjM3MTE3NjQ5OCwicGhvdG9VcmwiOiJodHRwczovL3QubWUvaS91c2VycGljLzMyMC9CWFBKNURtb2g4WnBDdDNWcHU2RWxnTzBUMFRsejlqaFNrX3ZaaFo5WVB3LmpwZyIsInVzZXJuYW1lIjoibmV1cm9tYXNrIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNjM4MTQ0MzcwLCJleHAiOjE2MzgyMzA3NzB9.eUkLs7nS2W4jTUavt0ydPbv_wFLLQWFzPRBEzNeYH7E';
-      await fileManagerHelper.create('market', b64image, fileName, token);
+      await fileManagerHelper.create('market', b64image, fileName, 'Bearer '+ctx.scene.state.token);
 
       let sqlFile = "INSERT INTO market_product_images (market_product_id, file_name) VALUES (?, ?)";
       let paramsFile = [result.insertId, fileName];
       await db.query(sqlFile, paramsFile);
 
-      await ctx.replyWithHTML(translate('finalText'));
+      await ctx.replyWithHTML(translate('finalText', ctx));
       await bot.telegram.sendMessage(371176498, `*DONE:*\n${ctx.scene.state.userFirstName} добавил товар, ${ctx.scene.state.title}, ${ctx.scene.state.description}. Язык [ ${ctx.scene.state.locale} ]`, { parse_mode: "Markdown" });
       console.log("MARKET | DONE by USER: " + ctx.scene.state.userFirstName);
 
       return ctx.scene.leave();
-    });
+    }*/
 
 
     // scene
     const marketScene = new WizardScene('marketScene', titleHandler, descriptionHandler, priceHandler, categoryHandler, imageHandler);
     marketScene.enter(async ctx => {
-      console.log(ctx.message.chat)
+
+      let userData = {
+        uin: ctx.update.message.chat.id,
+        firstName: ctx.update.message.chat.first_name,
+        photoUrl: '',
+        username: ctx.update.message.chat.username
+      }
+      let response = await axios.post('http://app.electrotallinn.ee/api/authentication/login/bot', userData);
+      // scene vars
+      ctx.scene.state.token = response.data.token;
       ctx.scene.state.userFirstName = ctx.update.message.chat.first_name;
       ctx.scene.state.locale = ctx.message.from.language_code;
+
       console.log("MARKET | STARTED by USER: " + ctx.scene.state.userFirstName);
       bot.telegram.sendMessage(371176498, `*MARKET | STARTED:*\nНачал, [ ${ctx.scene.state.userFirstName} ], язык [ ${ctx.scene.state.locale} ]`, { parse_mode: "Markdown" });
       let payload = await ctx.replyWithMarkdown(translate('titleText', ctx), exitKeyboard);
@@ -186,7 +199,7 @@ module.exports = {
     });
     marketScene.leave(ctx => {
       console.log("MARKET | ABORTED by USER: " + ctx.scene.state.userFirstName)
-      bot.telegram.sendMessage(ctx.chat.id, translate('leaveText', ctx), remove_keyboard)
+      bot.telegram.sendMessage(ctx.chat.id, translate('leaveText', ctx))
     });
 
     return marketScene
