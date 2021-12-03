@@ -4,8 +4,12 @@ const wizardMap = require("./wizardMap.js");
 const wizardMarket = require("./wizardMarket.js");
 require('dotenv').config();
 const bot = new Telegraf(process.env.TELEGRAM_TOKEN);
-const db = require("./db.js");
+const translations = require("./translation.json");
 
+translate = (path, ctx) => {
+  let parts = path.split('.')
+  return parts.reduce((previousValue, currentValue) => previousValue[currentValue], translations[ctx.scene.state.locale]) || path
+}
 
 // ------------- Wizards ------------- //
 
@@ -161,11 +165,6 @@ let arr = ['6ля', '6лядь', '6лять', 'b3ъeб', 'cock', 'cunt', 'e6aл�
 bot.hears(arr, ctx => {
   ctx.replyWithMarkdown(`*${ctx.message.from.first_name}*, не ругаемся :) - _сообщение удалено_`);
   ctx.deleteMessage();
-});
-
-bot.hears("!sql", async ctx => {
-  let result = await db.query("SELECT * from users where id=?", [3]);
-  bot.telegram.sendMessage(ctx.chat.id, result);
 });
 
 bot.launch();
