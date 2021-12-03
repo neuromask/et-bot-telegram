@@ -1,11 +1,5 @@
-const { Composer, Markup, Scenes, session, Telegraf } = require("telegraf");
-/* eslint-disable @typescript-eslint/no-floating-promises */
-//import { Composer, Context, Markup, Scenes, session, Telegraf } from 'telegraf'
-
-const token = "1618791599:AAG-vaRh389dVh_9GwR5vqYXXv5yqwhYMmE"
-if (token === undefined) {
-  throw new Error('BOT_TOKEN must be provided!')
-}
+const { Telegraf, session, Scenes: { WizardScene, Stage }, Composer, Context, Markup } = require("telegraf");
+const bot = new Telegraf(process.env.TELEGRAM_TOKEN);
 
 
 const stepHandler = new Composer()
