@@ -100,14 +100,15 @@ module.exports = {
 
       if (!groupFirst) bot.telegram.editMessageReplyMarkup(ctx.chat.id, ctx.scene.state.lastBotMsgId, reply_markup={})
 
+      ctx.scene.state.images = ctx.scene.state.images || []
+
       if (ctx.scene.state.images.length < 3) {
         // Get Image
         const getUrl = await ctx.telegram.getFileLink(ctx.message.photo[3].file_id);
         const imgUrl = getUrl.href;
         console.log("IMG URL: " + imgUrl + " by USER: " + ctx.scene.state.userFirstName);
-
         const response = await axios.get(imgUrl, { responseType: 'arraybuffer' })
-        ctx.scene.state.images = ctx.scene.state.images || []
+        
         ctx.scene.state.images.push(Buffer.from(response.data, 'binary').toString('base64'))
       }
 
