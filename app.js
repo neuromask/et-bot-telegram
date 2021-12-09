@@ -1,9 +1,9 @@
 const { Telegraf, session, Scenes: { WizardScene, Stage }, Composer, Context, Markup } = require("telegraf");
 require('dotenv').config();
-const wizardMap = require("./wizardMap.js");
-const wizardMarket = require("./wizardMarket.js");
-const weather = require("./weather.js");
-const msg = require("./msg.js");
+const wizardMap = require("./components/wizardMap.js");
+const wizardMarket = require("./components/wizardMarket.js");
+const weather = require("./components/weather.js");
+const msg = require("./components/msg.js");
 const bot = new Telegraf(process.env.TELEGRAM_TOKEN);
 
 // ------------- Translation ------------- //

@@ -1,6 +1,6 @@
 const { Telegraf, session, Scenes: { WizardScene, Stage }, Composer, Context, Markup } = require("telegraf");
 const axios = require('axios').default;
-const db = require("./db.js");
+const db = require("../db.js");
 const { v4: uuidv4 } = require('uuid');
 
 
