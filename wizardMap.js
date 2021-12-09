@@ -83,13 +83,25 @@ module.exports = {
       ctx.scene.state.lng = ctx.message.location.longitude;
       let msg = await ctx.replyWithMarkdown('Location added', remove_keyboard);
       bot.telegram.deleteMessage(ctx.chat.id, msg.message_id);
-      await ctx.replyWithMarkdown(translate('map.photoText', ctx), exitKeyboard);
+      let payload = await ctx.replyWithMarkdown(translate('map.photoText', ctx), exitKeyboard);
+      ctx.scene.state.lastBotMsgId = payload.message_id;
       return ctx.wizard.next();
 
     });
 
     const imageHandler = new Composer()
     imageHandler.on('photo', async ctx => {
+
+      if (ctx.message.media_group_id) {
+        if (ctx.scene.state.imageHandlerGroupId != ctx.message.media_group_id) {
+          ctx.scene.state.imageHandlerGroupId = ctx.message.media_group_id
+          bot.telegram.editMessageReplyMarkup(ctx.chat.id, ctx.scene.state.lastBotMsgId, reply_markup={})
+          let payload = await bot.telegram.sendMessage(ctx.chat.id, translate('map.errorPhotoGroupText', ctx), exitKeyboard)
+          ctx.scene.state.lastBotMsgId = payload.message_id;
+        }
+        return
+      }
+
       // Get Image
       const getUrl = await ctx.telegram.getFileLink(ctx.message.photo[2].file_id);
       const imgUrl = getUrl.href;

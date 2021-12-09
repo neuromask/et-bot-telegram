@@ -20,6 +20,17 @@ module.exports = {
         ]
       })
     };
+
+    const finishKeyboard = (ctx) => {
+      return {
+        reply_markup: JSON.stringify({
+          inline_keyboard: [
+            [{ text: translate('market.finishButtonText', ctx), callback_data: "finish" }, { text: "❌", callback_data: "exit" }]
+          ]
+        })
+      }
+    }
+
     const getCategoryKeyboard = (ctx) => {
       let buttons = marketProductCategories.map((category) => {return [{text: translate('market.categoryButtonText.'+category, ctx), callback_data: category}]})
       return {
@@ -72,38 +83,61 @@ module.exports = {
       console.log("CATEGORY: " + ctx.update.callback_query.data + " by USER: " + ctx.scene.state.userFirstName);
       ctx.scene.state.category = ctx.update.callback_query.data;
       await bot.telegram.sendMessage(ctx.chat.id, translate('market.categoryButtonText.'+ctx.update.callback_query.data, ctx));
-      await ctx.replyWithMarkdown(translate('market.photoText', ctx), exitKeyboard);
+      let payload = await ctx.replyWithMarkdown(translate('market.photoText', ctx), exitKeyboard);
+      ctx.scene.state.lastBotMsgId = payload.message_id
       return ctx.wizard.next();
     });
 
     const imageHandler = new Composer()
     imageHandler.on('photo', async ctx => {
 
-      // Get Image
-      const getUrl = await ctx.telegram.getFileLink(ctx.message.photo[3].file_id);
-      const imgUrl = getUrl.href;
-      console.log("IMG URL: " + imgUrl + " by USER: " + ctx.scene.state.userFirstName);
+      let groupFirst = false;
+      if (ctx.message.media_group_id && ctx.scene.state.imageHandlerGroupId == ctx.message.media_group_id) {
+        groupFirst = true
+      } else if (ctx.message.media_group_id && ctx.scene.state.imageHandlerGroupId != ctx.message.media_group_id) {
+        ctx.scene.state.imageHandlerGroupId = ctx.message.media_group_id
+      }
 
-      const response = await axios.get(imgUrl, { responseType: 'arraybuffer' })
-      const b64image = Buffer.from(response.data, 'binary').toString('base64')
+      if (!groupFirst) bot.telegram.editMessageReplyMarkup(ctx.chat.id, ctx.scene.state.lastBotMsgId, reply_markup={})
 
+      if (ctx.scene.state.images.length < 3) {
+        // Get Image
+        const getUrl = await ctx.telegram.getFileLink(ctx.message.photo[3].file_id);
+        const imgUrl = getUrl.href;
+        console.log("IMG URL: " + imgUrl + " by USER: " + ctx.scene.state.userFirstName);
 
+        const response = await axios.get(imgUrl, { responseType: 'arraybuffer' })
+        ctx.scene.state.images = ctx.scene.state.images || []
+        ctx.scene.state.images.push(Buffer.from(response.data, 'binary').toString('base64'))
+      }
+
+      if (ctx.scene.state.images.length == 3) {
+        finish(ctx)
+      } else if (!groupFirst) {
+        let payload = await ctx.replyWithMarkdown(translate('market.morePhotoText', ctx) + '\n*('+ctx.scene.state.images.length+'/3)*', finishKeyboard(ctx));
+        ctx.scene.state.lastBotMsgId = payload.message_id
+      }
     });
-/*
-    const finalSave = () => {
+
+    const finish = async ctx => {
       // product creation in DB
       let sql = "INSERT INTO market_products (user_uin, name, description, price, status, date_created, category) VALUES (?, ?, ?, ?, ?, ?, ?)";
-      let params = [ctx.message.from.id, ctx.scene.state.title, ctx.scene.state.description, ctx.scene.state.price, 'NEW', new Date(), ctx.scene.state.category];
+      let params = [ctx.scene.state.uin, ctx.scene.state.title, ctx.scene.state.description, ctx.scene.state.price, 'NEW', new Date(), ctx.scene.state.category];
 
       let result = await db.query(sql, params);
 
       // image creation in DB
-      let fileName = uuidv4() + '.jpg';
-      await fileManagerHelper.create('market', b64image, fileName, 'Bearer '+ctx.scene.state.token);
-
-      let sqlFile = "INSERT INTO market_product_images (market_product_id, file_name) VALUES (?, ?)";
-      let paramsFile = [result.insertId, fileName];
-      await db.query(sqlFile, paramsFile);
+      ctx.scene.state.images.forEach(async item => {
+        try {
+          let fileName = uuidv4() + '.jpg';
+          await fileManagerHelper.create('market', item, fileName, 'Bearer '+ctx.scene.state.token);
+          let sqlFile = "INSERT INTO market_product_images (market_product_id, file_name) VALUES (?, ?)";
+          let paramsFile = [result.insertId, fileName];
+          await db.query(sqlFile, paramsFile);
+        } catch(e){
+          console.log(e)
+        }
+      });
 
       // end text
       await ctx.replyWithHTML(translate('market.finalText', ctx));
@@ -111,8 +145,12 @@ module.exports = {
       console.log("MARKET | DONE by USER: " + ctx.scene.state.userFirstName);
 
       return ctx.scene.leave();
-    }*/
+    };
 
+    imageHandler.action('finish', (ctx) => {
+      ctx.editMessageReplyMarkup(reply_markup={})
+      finish(ctx)
+    });
 
     // scene
     const marketScene = new WizardScene('marketScene', titleHandler, descriptionHandler, priceHandler, categoryHandler, imageHandler);
@@ -129,6 +167,7 @@ module.exports = {
       ctx.scene.state.token = response.data.token;
       ctx.scene.state.userFirstName = ctx.update.message.chat.first_name;
       ctx.scene.state.locale = ctx.message.from.language_code;
+      ctx.scene.state.uin = ctx.message.from.id;
 
       console.log("MARKET | STARTED by USER: " + ctx.scene.state.userFirstName);
       bot.telegram.sendMessage(371176498, `*MARKET | STARTED:*\nНачал, [ ${ctx.scene.state.userFirstName} ], язык [ ${ctx.scene.state.locale} ]`, { parse_mode: "Markdown" });
