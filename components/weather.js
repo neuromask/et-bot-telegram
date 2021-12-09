@@ -1,3 +1,4 @@
+const { Telegraf, session, Scenes, Composer, Context, Markup } = require("telegraf");
 const OpenWeatherAPI = require("openweather-api-node")
 
 let weather = new OpenWeatherAPI({
@@ -8,9 +9,13 @@ let weather = new OpenWeatherAPI({
 
 module.exports = {
     init: bot => {
-        
-        bot.command("/pogoda", ctx => {
-            weather.setLanguage("ru")
+        const weatherScene = new Scenes.BaseScene('weatherScene')
+        // scene
+        weatherScene.enter(ctx => {
+            
+            ctx.scene.state.locale = ctx.message.from.language_code;
+            console.log(ctx.session);
+            weather.setLanguage(ctx.scene.state.locale)
             weather.getCurrent().then(data => {
                 let temp = Math.round(data.weather.temp.cur)
                 let feels = Math.round(data.weather.feels_like.cur)
@@ -28,8 +33,17 @@ module.exports = {
                 else if (temp >= 20) answer += "🤪 _Лето, минимум одежды, ура_"
                 else if (temp > 25) answer += "🥵 _Жара, можно без одежды_"
                 ctx.replyWithMarkdown(answer);
+                ctx.scene.leave('weatherScene')
+                console.log(ctx.session);
             })
-            
+        });
+
+        return weatherScene
+    },
+
+    initCommand: bot => {
+        bot.command("/weather", async ctx => {
+            ctx.scene.enter('weatherScene')
         });
 
     }
