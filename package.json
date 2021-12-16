@@ -2,11 +2,7 @@
   "name": "etbot",
   "description": "ElectroBot",
   "scripts": {
-    "start": "node app.js",
-    "test": "node test.js --watch"
-  },
-  "engines": {
-    "node": "14"
+    "start": "node app.js"
   },
   "main": "index.js",
   "dependencies": {
