@@ -1,38 +1,52 @@
 const { image_search, image_search_generator } = require("duckduckgo-images-api");
 
-const botCommands = `ET⚡️ *Bot commands*:
-*/market* - _Market with products_
+function botCommands(lang) {
+    if(lang == 'ru') {
+    return `ET⚡️ *Команды бота*\n
+*/sell* - _Добавить продукт в маркет_
+*/add* - _Добавить точку на карту_
+*/pogoda* - _Прогноз погоды_
+*/market* - _Меню маркета_
+*/map* - _Меню карты_
+*/ali* - _Aliexpress ссылки_
+*/help* - _Перечень команд_
+*/social* - _Ссылки на соцсети_
+*/pic* <название> - _Поиск картинки_`;
+    } else {
+    return `ET⚡️ *Bot commands*\n
 */sell* - _Add product to sell_
-*/map* - _Charging sockets map_
 */add* - _Add point to map_
+*/weather* - _Weather forecast_
+*/market* - _Market menu_
+*/map* - _Map menu_
 */ali* - _Aliexpress links_
 */help* - _List of commands_
 */social* - _ElectroTallinn social media links_
-*/pic* <name> - _Search for image_`;
+*/pic* <name> - _Search for image_`
+    }
+}
+
 
 module.exports = {
     init: bot => {
-        bot.start((ctx) => ctx.reply(botCommands, { disable_web_page_preview: true, parse_mode: "Markdown", disable_notification: true }));
+        bot.start((ctx) => ctx.reply(botCommands(ctx.message.from.language_code), { disable_web_page_preview: true, parse_mode: "Markdown", disable_notification: true }));
         // New member
         bot.on("new_chat_members", (ctx) => {
-            bot.telegram.sendMessage(ctx.chat.id,
-                `*Welcome / Добро пожаловать, ${ctx.message.new_chat_member.first_name}!*\n 
-                ⚠️ <a href="https://t.me/electrotallinn_alerts/7">Ознакомься</a> с устройством группы в Телеграме! ⚠️ \n 
-                ⚠️ <a href="https://t.me/electrotallinn_alerts/7">Please read</a> group information in Telegram! ⚠️\n`,
+            bot.telegram.sendMessage(ctx.chat.id,`*Welcome / Добро пожаловать, ${ctx.message.new_chat_member.first_name}!*\n ⚠️ <a href="https://t.me/electrotallinn_alerts/7">Ознакомься</a> с устройством группы в Телеграме! ⚠️ \n ⚠️ <a href="https://t.me/electrotallinn_alerts/7">Please read</a> group information in Telegram! ⚠️\n`,
                 { disable_web_page_preview: true, parse_mode: "HTML", disable_notification: true });
             ctx.replyWithSticker('CAACAgQAAxkBAAEKmPJgtu1nXdo4zdB0lKLHAAFzcsmOyl8AAj8KAAJrfPFTmXeoVb1qy_cfBA');
         });
 
         bot.command("/help", ctx => {
-            bot.telegram.sendMessage(ctx.chat.id, botCommands, { disable_web_page_preview: true, parse_mode: "Markdown", disable_notification: true });
+            bot.telegram.sendMessage(ctx.chat.id, botCommands(ctx.message.from.language_code), { disable_web_page_preview: true, parse_mode: "Markdown", disable_notification: true });
         });
 
         bot.command("/ali", ctx => {
-            bot.telegram.sendMessage(ctx.chat.id, "ET⚡️ *Aliexpress links:* _https://bit.ly/2DVyl1d_", { disable_web_page_preview: true, parse_mode: "Markdown", disable_notification: true });
+            bot.telegram.sendMessage(ctx.chat.id, "ET⚡️ *Aliexpress links*\n\n_https://bit.ly/2DVyl1d_", { disable_web_page_preview: true, parse_mode: "Markdown", disable_notification: true });
         });
 
         bot.command("/map", ctx => {
-            let botMessage = "ET⚡️ *Map*:";
+            let botMessage = "ET⚡️ *Map*\n";
             bot.telegram.sendMessage(ctx.chat.id, botMessage, {
                 disable_notification: true,
                 parse_mode: "Markdown",
@@ -43,7 +57,7 @@ module.exports = {
                             { text: "🏆 Top Ranks", url: 'https://app.electrotallinn.ee/users/ranks' },
                         ],
                         [
-                            { text: "ℹ️ Help", url: 'https://app.electrotallinn.ee/help' },
+                            { text: "ℹ️ App", url: 'https://app.electrotallinn.ee' },
                             { text: "📍 Add Point", url: 'https://t.me/electrotallinnbot?start' },
                         ]
                     ]
@@ -52,7 +66,7 @@ module.exports = {
         });
 
         bot.command("/market", ctx => {
-            let botMessage = "ET⚡️ *Market*:";
+            let botMessage = "ET⚡️ *Market*\n";
             bot.telegram.sendMessage(ctx.chat.id, botMessage, {
                 disable_notification: true,
                 parse_mode: "Markdown",
@@ -60,11 +74,11 @@ module.exports = {
                     inline_keyboard: [
                         [
                             { text: "🛒 Market", url: 'https://app.electrotallinn.ee/market' },
-                            //{ text: "👤 Profiles", url: 'https://app.electrotallinn.ee/users' },
-                            { text: "ℹ️ Help", url: 'https://app.electrotallinn.ee/help' },
+                            { text: "⚡ App", url: 'https://app.electrotallinn.ee' },
                         ],
-                        [ 
-                            { text: "💰 Sell Product", url: 'https://t.me/electrotallinnbot?start' },
+                        [
+                            { text: "👤 Profiles", url: 'https://app.electrotallinn.ee/users' },
+                            { text: "💰 Sell", url: 'https://t.me/electrotallinnbot?start' },
                         ]
                     ]
                 }
@@ -79,7 +93,7 @@ module.exports = {
         });
 
         bot.command("/social", ctx => {
-            let botMessage = "ET⚡️ *ElectroTallinn* in social media:";
+            let botMessage = "ET⚡️ *Social media links*\n";
             //ctx.deleteMessage();
             bot.telegram.sendMessage(ctx.chat.id, botMessage, {
                 disable_notification: true,

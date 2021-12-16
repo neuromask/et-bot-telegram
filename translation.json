@@ -3,10 +3,9 @@
         "market": {
             "chatTypeText": "[Warning] This command only for private chat.\nLets talk in private - @ElectroTallinnBot :)",
             "titleText": "ET⚡️ *Sell product*\n\n⚠️ Before adding a product, make sure you have added a username in your Telegram settings!\n\n1️⃣ *Name* \nName: Enter the name of the product.",
-            "descriptionText": "2️⃣ *Desription*\nDescribe the product. Condition, characteristics, wear, etc.",
+            "descriptionText": "2️⃣ *Description*\nDescribe the product. Condition, characteristics, wear, etc.",
             "priceText": "3️⃣ *Price*\nWrite product price in euros.",
             "categoryText": "4️⃣ *Category*\nSelect a product category.",
-            "categoryButtonText": "4️⃣ *Category*\nSelect a product category.",
             "photoText": "5️⃣ *Photo*\nTake a photo of the product or download from your phone library. Max 3 photo.",
             "morePhotoText": "Add another photo or press *Finish*",
             "finalText": "👍 <b>Thank you</b> 👍\nProduct will be approved in 24h and added to the <a href='https://app.electrotallinn.ee/market'>market</a>.",
@@ -23,7 +22,7 @@
         "map": {
             "chatTypeText": "[Warning] This command only for private chat.\nLets talk in private - @ElectroTallinnBot :)",
             "titleText": "ET⚡️ *Add point*\n\n⚠️ Before adding a point, please make sure that the outlet is working and same point has not been previously added to the map!\n\n1️⃣ *Name*\nPlease name the place, write address, company or street name near the object.",
-            "descriptionText": "2️⃣ *Desription*\nPlease describe place. Is it outside or inside? How to find it in place.",
+            "descriptionText": "2️⃣ *Description*\nPlease describe place. Is it outside or inside? How to find it in place.",
             "typeText": "3️⃣ *Type*\nPlease select type of place.",
             "coordsText": "4️⃣ *Location*\nPlease select your current location or use marker for custom location.",
             "coordsBtnText": "My current location.",
@@ -37,6 +36,21 @@
                 "WATER": "💦 [Water]",
                 "AIR": "💨 [Air]"
             }
+        },
+        "weather": {
+            "descriptionText": "Currently in Tallinn",
+            "tempText": "Temperature around",
+            "feelsText": "From my feelings",
+            "m15": "🥶🥶 _Illegal freezing, be like submarine!_",
+            "m10": "🥶 _Cold freezing, three jackets minimum!_",
+            "m5": "😱 _Very cold, be like tank!_",
+            "m0": "😨 _Sub zero, take cold gear!_",
+            "0": "😬 _Cold, take warm clothes!_",
+            "5": "😶‍🌫️ _Cold a bit, take medium clothes._",
+            "10": "😉 _Warm a bit, less clothes_",
+            "15": "🤗 _Almost summer, let's go_",
+            "20": "🤪 _Summer, minimum of clothes_",
+            "25": "🥵 _Hot, without clothes :)_"
         }
     },
     "ru": {
@@ -46,15 +60,14 @@
             "descriptionText": "2️⃣ *Описание*\nОпишите товар. Состояние, характеристика, износ и т.д.",
             "priceText": "3️⃣ *Цена*\nУкажите цену товара в евро.",
             "categoryText": "4️⃣ *Категория*\nВыберите категорию товара.",
-            "categoryButtonText": "4️⃣ *Категория*\nВыберите категорию товара.",
             "photoText": "5️⃣ *Фото*\nСделайте фото товара или загрузите из библиотеки телефона. До треёх фото.",
-            "morePhotoText": "Добавте еще одну фотографию или нажмите *Завершить*",
+            "morePhotoText": "Добавьте еще одну фотографию или нажмите *Завершить*",
             "finalText": "👍 <b>Спасибо</b> 👍\nТовар будет одобрен в течение 24 часов и добавлен в <a href='https://app.electrotallinn.ee/market'>маркет</a>.",
             "leaveText": "Завершено.",
             "categoryButtonText": {
                 "TRANSPORT": "🛴 [Транспорт]",
                 "SPARE_PARTS": "⚙️ [Комплектующие]",
-                "ACCESSORIES": "🚥 [Аксусуары]",
+                "ACCESSORIES": "🚥 [Аксессуары]",
                 "EQUIPMENT": "👖 [Экипировка]",
                 "OTHER": "⚡ [Другое]"
             },
@@ -77,6 +90,21 @@
                 "WATER": "💦 [Вода]",
                 "AIR": "💨 [Воздух]"
             }
+        },
+        "weather": {
+            "descriptionText": "Сейчас в Таллинне",
+            "tempText": "Температура примерно",
+            "feelsText": "По моим ощущениям",
+            "m15": "🥶🥶 _Нелегальный холод, одевайся как подводная лодка!_",
+            "m10": "🥶 _Лютый мороз, накинь пару шуб!_",
+            "m5": "😱 _Жесть как холодно, одевайся как танк!_",
+            "m0": "😨 _Очень холодно, одевайся тепло!_",
+            "0": "😬 _Холодно, одевайся потеплее!_",
+            "5": "😶‍🌫️ _Прохладно, одевайся средне._",
+            "10": "😉 _Нормально, можно не укутываться_",
+            "15": "🤗 _Почти лето, гуляем_",
+            "20": "🤪 _Лето, минимум одежды, ура_",
+            "25": "🥵 _Жара, можно без одежды_"
         }
     },
     "et-ee": {
@@ -86,7 +114,6 @@
             "descriptionText": "2️⃣ *Kirjeldus*\nKirjeldage toodet. Seisukord, omadused, kulumine jne.",
             "priceText": "3️⃣ *Hind*\nMärkige kauba hind eurodes.",
             "categoryText": "4️⃣ *Kategooria*\nValige tootekategooria.",
-            "categoryButtonText": "4️⃣ *Kategooria*\nValige tootekategooria.",
             "photoText": "5️⃣ *Foto*\nTehke tootest foto või laadige alla oma telefoniraamatukogust. Max 3 foto.",
             "morePhotoText": "Lisage veel üks foto või vajutage nuppu *Lõpeta*",
             "finalText": "👍 <b>Täname</b> 👍\nKaup kinnitatakse 24 tunni jooksul ja lisatakse <a href='https://app.electrotallinn.ee/market'>turule</a>.",

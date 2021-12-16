@@ -2,7 +2,7 @@ const { Telegraf, session, Scenes: { WizardScene, Stage }, Composer, Context, Ma
 require('dotenv').config();
 const wizardMap = require("./components/wizardMap.js");
 const wizardMarket = require("./components/wizardMarket.js");
-const wizardWeather = require("./components/weather.js");
+const weather = require("./components/weather.js");
 const msg = require("./components/msg.js");
 const bot = new Telegraf(process.env.TELEGRAM_TOKEN);
 
@@ -18,9 +18,8 @@ translate = (path, ctx) => {
 
 const sceneMap = wizardMap.init(bot);
 const sceneMarket = wizardMarket.init(bot);
-const sceneWeather = wizardWeather.init(bot);
 
-const stage = new Stage([sceneMap, sceneMarket, sceneWeather]);
+const stage = new Stage([sceneMap, sceneMarket]);
 stage.action('exit', ctx => {
   ctx.editMessageReplyMarkup(reply_markup={})
   ctx.scene.leave()
@@ -31,10 +30,10 @@ bot.use(stage.middleware())
 
 wizardMap.initCommand(bot);
 wizardMarket.initCommand(bot);
-wizardWeather.initCommand(bot);
 
 // ------------- Components ------------- //
 
+weather.init(bot);
 msg.init(bot);
 
 // ------------- Launch bot ------------- //

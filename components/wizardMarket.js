@@ -123,7 +123,7 @@ module.exports = {
     const finish = async ctx => {
       // product creation in DB
       let sql = "INSERT INTO market_products (user_uin, name, description, price, status, date_created, category) VALUES (?, ?, ?, ?, ?, ?, ?)";
-      let params = [ctx.scene.state.uin, ctx.scene.state.title, ctx.scene.state.description, ctx.scene.state.price, 'NEW', new Date(), ctx.scene.state.category];
+      let params = [ctx.scene.state.uin, ctx.scene.state.title, ctx.scene.state.description, ctx.scene.state.price, 'ACTIVE', new Date(), ctx.scene.state.category];
 
       let result = await db.query(sql, params);
 
