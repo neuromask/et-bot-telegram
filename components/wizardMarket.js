@@ -103,7 +103,7 @@ module.exports = {
       ctx.scene.state.images = ctx.scene.state.images || []
 
       if (ctx.scene.state.images.length < 3) {
-        // Get Image
+        // Get image link
         const getUrl = await ctx.telegram.getFileLink(ctx.message.photo[3].file_id);
         const imgUrl = getUrl.href;
         console.log("IMG URL: " + imgUrl + " by USER: " + ctx.scene.state.userFirstName);
@@ -156,15 +156,22 @@ module.exports = {
     // scene
     const marketScene = new WizardScene('marketScene', titleHandler, descriptionHandler, priceHandler, categoryHandler, imageHandler);
     marketScene.enter(async ctx => {
+      
+      // Get avatar link
+      let avatarObject = await ctx.telegram.getUserProfilePhotos(ctx.update.message.from.id, 0, 1)
+      let getUrl = await ctx.telegram.getFileLink(avatarObject.photos[0][2].file_id);
+      const userAvatarUrl = getUrl.href;
 
       let userData = {
         uin: ctx.update.message.chat.id,
         firstName: ctx.update.message.chat.first_name,
-        photoUrl: '',
+        photoUrl: userAvatarUrl,
         username: ctx.update.message.chat.username
       }
-      let response = await axios.post('https://app.electrotallinn.ee/api/authentication/login/bot', userData);
-      // scene vars
+      console.log(userData.photoUrl)
+      let response = await axios.post(process.env.BOT_AUTH, userData);
+
+      // Scene vars
       ctx.scene.state.token = response.data.token;
       ctx.scene.state.userFirstName = ctx.update.message.chat.first_name;
       ctx.scene.state.locale = ctx.message.from.language_code;
