@@ -163,7 +163,7 @@ module.exports = {
         photoUrl: '',
         username: ctx.update.message.chat.username
       }
-      let response = await axios.post('http://app.electrotallinn.ee/api/authentication/login/bot', userData);
+      let response = await axios.post('https://app.electrotallinn.ee/api/authentication/login/bot', userData);
       // scene vars
       ctx.scene.state.token = response.data.token;
       ctx.scene.state.userFirstName = ctx.update.message.chat.first_name;
