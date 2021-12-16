@@ -6,6 +6,7 @@ function botCommands(lang) {
 */sell* - _Добавить продукт в маркет_
 */add* - _Добавить точку на карту_
 */pogoda* - _Прогноз погоды_
+*/app* - _Страница приложения_
 */market* - _Меню маркета_
 */map* - _Меню карты_
 */ali* - _Aliexpress ссылки_
@@ -17,6 +18,7 @@ function botCommands(lang) {
 */sell* - _Add product to sell_
 */add* - _Add point to map_
 */weather* - _Weather forecast_
+*/app* - _App webpage_
 */market* - _Market menu_
 */map* - _Map menu_
 */ali* - _Aliexpress links_
@@ -43,6 +45,10 @@ module.exports = {
 
         bot.command("/ali", ctx => {
             bot.telegram.sendMessage(ctx.chat.id, "ET⚡️ *Aliexpress links*\n\n_https://bit.ly/2DVyl1d_", { disable_web_page_preview: true, parse_mode: "Markdown", disable_notification: true });
+        });
+
+        bot.command("/app", ctx => {
+            bot.telegram.sendMessage(ctx.chat.id, "ET⚡️ *App*\n\n_https://app.electrotallinn.ee_", { disable_web_page_preview: true, parse_mode: "Markdown", disable_notification: true });
         });
 
         bot.command("/map", ctx => {
