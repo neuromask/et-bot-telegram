@@ -8,7 +8,7 @@
             "categoryText": "4️⃣ *Category*\nSelect a product category.",
             "photoText": "5️⃣ *Photo*\nTake a photo of the product or download from your phone library. Max 3 photo.",
             "morePhotoText": "Add another photo or press *Finish*",
-            "finalText": "👍 <b>Thank you</b> 👍\nProduct will be approved in 24h and added to the <a href='https://app.electrotallinn.ee/market'>market</a>.",
+            "finalText": "👍 <b>Thank you</b> 👍\nProduct added to the <a href='https://app.electrotallinn.ee/market'>market</a>.",
             "leaveText": "Ended.",
             "categoryButtonText": {
                 "TRANSPORT": "🛴 [Transport]",
@@ -62,7 +62,7 @@
             "categoryText": "4️⃣ *Категория*\nВыберите категорию товара.",
             "photoText": "5️⃣ *Фото*\nСделайте фото товара или загрузите из библиотеки телефона. До треёх фото.",
             "morePhotoText": "Добавьте еще одну фотографию или нажмите *Завершить*",
-            "finalText": "👍 <b>Спасибо</b> 👍\nТовар будет одобрен в течение 24 часов и добавлен в <a href='https://app.electrotallinn.ee/market'>маркет</a>.",
+            "finalText": "👍 <b>Спасибо</b> 👍\nТовар добавлен в <a href='https://app.electrotallinn.ee/ru/market'>маркет</a>.",
             "leaveText": "Завершено.",
             "categoryButtonText": {
                 "TRANSPORT": "🛴 [Транспорт]",
@@ -116,7 +116,7 @@
             "categoryText": "4️⃣ *Kategooria*\nValige tootekategooria.",
             "photoText": "5️⃣ *Foto*\nTehke tootest foto või laadige alla oma telefoniraamatukogust. Max 3 foto.",
             "morePhotoText": "Lisage veel üks foto või vajutage nuppu *Lõpeta*",
-            "finalText": "👍 <b>Täname</b> 👍\nKaup kinnitatakse 24 tunni jooksul ja lisatakse <a href='https://app.electrotallinn.ee/market'>turule</a>.",
+            "finalText": "👍 <b>Täname</b> 👍\nKaup on lisatud <a href='https://app.electrotallinn.ee/market'>turule</a>.",
             "leaveText": "Lõppenud.",
             "categoryButtonText": {
                 "TRANSPORT": "🛴 [Transport]",
