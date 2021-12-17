@@ -1,5 +1,3 @@
-
-   
 const OpenWeatherAPI = require("openweather-api-node")
 
 let weather = new OpenWeatherAPI({

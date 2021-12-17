@@ -195,7 +195,8 @@ module.exports = {
     // command to start
     bot.command("/sell", async ctx => {
       if (ctx.message.chat.type != 'private') {
-        bot.telegram.sendMessage(ctx.chat.id, translate('market.chatTypeText', ctx));
+        ctx.scene.state.locale = ctx.message.from.language_code;
+        ctx.replyWithMarkdown(translate('market.chatTypeText', ctx));
       } else {
         ctx.scene.enter('marketScene');
       }

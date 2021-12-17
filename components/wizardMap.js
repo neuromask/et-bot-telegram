@@ -148,7 +148,8 @@ module.exports = {
     // command to start
     bot.command("/add", async ctx => {
       if (ctx.message.chat.type != 'private') {
-        bot.telegram.sendMessage(ctx.chat.id, translate('map.chatTypeText', ctx));
+        ctx.scene.state.locale = ctx.message.from.language_code;
+        ctx.replyWithMarkdown(translate('map.chatTypeText', ctx));
       } else {
         ctx.scene.enter('mapScene');
       }
