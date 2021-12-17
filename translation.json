@@ -1,7 +1,7 @@
 {
     "en": {
         "market": {
-            "chatTypeText": "⚠️ *[Warning]* ⚠️\n\nThis command only for private chat.\nLets talk in private - @ElectroTallinnBot :)",
+            "chatTypeText": "⚠️ *[Warning]* ⚠️\n\nThis command is only for private chat. Lets talk in private:\n@ElectroTallinnBot",
             "titleText": "ET⚡️ *Sell product*\n\n⚠️ Before adding a product, make sure you have added a username in your Telegram settings!\n\n1️⃣ *Name* \nName: Enter the name of the product.",
             "descriptionText": "2️⃣ *Description*\nDescribe the product. Condition, characteristics, wear, etc.",
             "priceText": "3️⃣ *Price*\nWrite product price in euros.",
@@ -20,7 +20,7 @@
             "finishButtonText": "Finish"
         },
         "map": {
-            "chatTypeText": "⚠️ *[Warning]* ⚠️\n\nThis command only for private chat.\nLets talk in private - @ElectroTallinnBot :)",
+            "chatTypeText": "⚠️ *[Warning]* ⚠️\n\nThis command is only for private chat. Lets talk in private:\n@ElectroTallinnBot",
             "titleText": "ET⚡️ *Add point*\n\n⚠️ Before adding a point, please make sure that the outlet is working and same point has not been previously added to the map!\n\n1️⃣ *Name*\nPlease name the place, write address, company or street name near the object.",
             "descriptionText": "2️⃣ *Description*\nPlease describe place. Is it outside or inside? How to find it in place.",
             "typeText": "3️⃣ *Type*\nPlease select type of place.",
@@ -55,7 +55,7 @@
     },
     "ru": {
         "market": {
-            "chatTypeText": "⚠️ *[Предупреждение]* ⚠️\n\nЭта команда только для приватного чата.\nПоговорим наедине - @ElectroTallinnBot :)",
+            "chatTypeText": "⚠️ *[Предупреждение]* ⚠️\n\nЭта команда только для приватного чата. Поговорим наедине:\n@ElectroTallinnBot",
             "titleText": "ET⚡️ *Продать товар*\n\n⚠️ Перед добавлением товара убедитесь в том, что у вас добавлено имя пользователя в настройках Telegram!\n\n1️⃣ *Название*\nНазвание: Укажите наименование товара.",
             "descriptionText": "2️⃣ *Описание*\nОпишите товар. Состояние, характеристика, износ и т.д.",
             "priceText": "3️⃣ *Цена*\nУкажите цену товара в евро.",
@@ -74,7 +74,7 @@
             "finishButtonText": "Завершить"
         },
         "map": {
-            "chatTypeText": "⚠️ *[Предупреждение]* ⚠️\n\nЭта команда только для приватного чата.\nПоговорим наедине - @ElectroTallinnBot :)",
+            "chatTypeText": "⚠️ *[Предупреждение]* ⚠️\n\nЭта команда только для приватного чата. Поговорим наедине:\n@ElectroTallinnBot",
             "titleText": "ET⚡️ *Добавить точку*\n\n⚠️ Перед добавлением точки убедитесь в том, что розетка работает и такая точка уже не добавлена ранее на карту!\n\n1️⃣ *Название*\nНазовите место: Укажите адрес, компанию или улицу рядом с объектом.",
             "descriptionText": "2️⃣ *Описание*\nОпишите место. Это снаружи или внутри? Как найти на месте.",
             "typeText": "3️⃣ *Тип*\nПожалуйста, выберите тип места.",
@@ -109,7 +109,7 @@
     },
     "et-ee": {
         "market": {
-            "chatTypeText": "⚠️ *[Hoiatus]* ⚠️\n\nSee käsk on mõeldud ainult privaatseks vestluseks.\nRäägime privaatselt - @ElectroTallinnBot :)",
+            "chatTypeText": "⚠️ *[Hoiatus]* ⚠️\n\nSee käsk on mõeldud ainult privaatseks vestluseks. Räägime privaatselt:\n@ElectroTallinnBot",
             "titleText": "ET⚡️ *Lisa toode*\n\n⚠️ Enne toote lisamist veendu, et oled Telegrami seadetes lisanud kasutajanime!\n\n1️⃣ *Nimi*\nSisesta toote nimi.",
             "descriptionText": "2️⃣ *Kirjeldus*\nKirjeldage toodet. Seisukord, omadused, kulumine jne.",
             "priceText": "3️⃣ *Hind*\nMärkige kauba hind eurodes.",
@@ -128,8 +128,7 @@
             "finishButtonText": "Lõpeta"
         },
         "map": {
-            "chatTypeText": "⚠️ *[Hoiatus]* ⚠️\n\nSee käsk on mõeldud ainult privaatseks vestluseks.\nRäägime privaatselt - @ElectroTallinnBot :)",
-            "titleText": "ET⚡️ *Lisa punkti*\n\n⚠️ Enne punkti lisamist veenduge, et pistikupesa töötab ja et sellist punkti pole kaardile varem lisatud.!\n\n1️⃣ *Nimi*\nPalun nimatage koht, kirjutage objekti lähedale aadress, ettevõtte või tänava nimi.",
+            "chatTypeText": "⚠️ *[Hoiatus]* ⚠️\n\nSee käsk on mõeldud ainult privaatseks vestluseks. Räägime privaatselt:\n@ElectroTallinnBot",            "titleText": "ET⚡️ *Lisa punkti*\n\n⚠️ Enne punkti lisamist veenduge, et pistikupesa töötab ja et sellist punkti pole kaardile varem lisatud.!\n\n1️⃣ *Nimi*\nPalun nimatage koht, kirjutage objekti lähedale aadress, ettevõtte või tänava nimi.",
             "descriptionText": "2️⃣ *Kirjeldus*\nPalun kirjeldage kohta. Kas see on väljas või sees? Kuidas seda kohal leida.",
             "typeText": "3️⃣ *Tüüp*\nPalun valige koha tüüp.",
             "coordsText": "4️⃣ *Asukoht*\nPalun valige oma praegune asukoht või kasutage kohandatud asukoha jaoks markerit.",
