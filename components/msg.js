@@ -12,7 +12,9 @@ function botCommands(lang) {
 */ali* - _Aliexpress ссылки_
 */help* - _Перечень команд_
 */social* - _Ссылки на соцсети_
-*/pic* <название> - _Поиск картинки_`;
+*/pic* <название> - _Поиск картинки_
+📍 - Отправьте свое гео положение, чтобы найти ближайшую розетку`
+
     } else {
     return `ET⚡️ *Bot commands*\n
 */sell* - _Add product to sell_
@@ -24,7 +26,8 @@ function botCommands(lang) {
 */ali* - _Aliexpress links_
 */help* - _List of commands_
 */social* - _ElectroTallinn social media links_
-*/pic* <name> - _Search for image_`
+*/pic* <name> - _Search for image_
+📍 - Send your geo position to get nearest socket around you`
     }
 }
 
