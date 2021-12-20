@@ -19,6 +19,11 @@
             },
             "finishButtonText": "Finish"
         },
+        "nearest": {
+            "nearestPoint": "ET⚡️ *Nearest socket*\n\nI found the nearest socket around you:\n",
+            "distance": "Distance:",
+            "km": "km"
+        },
         "map": {
             "chatTypeText": "⚠️ *[Warning]* ⚠️\n\nThis command is only for private chat. Lets talk in private:\n@ElectroTallinnBot",
             "titleText": "ET⚡️ *Add point*\n\n⚠️ Before adding a point, please make sure that the outlet is working and same point has not been previously added to the map!\n\n1️⃣ *Name*\nPlease name the place, write address, company or street name near the object.",
@@ -73,6 +78,11 @@
             },
             "finishButtonText": "Завершить"
         },
+        "nearest": {
+            "nearestPoint": "ET⚡️ *Ближайшая розетка*\n\nНашел розетку около тебя:\n",
+            "distance": "Расстояние:",
+            "km": "км"
+        },
         "map": {
             "chatTypeText": "⚠️ *[Предупреждение]* ⚠️\n\nЭта команда только для приватного чата. Поговорим наедине:\n@ElectroTallinnBot",
             "titleText": "ET⚡️ *Добавить точку*\n\n⚠️ Перед добавлением точки убедитесь в том, что розетка работает и такая точка уже не добавлена ранее на карту!\n\n1️⃣ *Название*\nУкажите адрес, компанию или улицу рядом с объектом.",
@@ -126,6 +136,11 @@
                 "OTHER": "⚡ [Muud]"
             },
             "finishButtonText": "Lõpeta"
+        },
+        "nearest": {
+            "nearestPoint": "ET⚡️ *Lähim pistikupesa*\n\nLeidsin teie ümbert lähima pistikupesa:\n",
+            "distance": "Kaugus:",
+            "km": "km"
         },
         "map": {
             "chatTypeText": "⚠️ *[Hoiatus]* ⚠️\n\nSee käsk on mõeldud ainult privaatseks vestluseks. Räägime privaatselt:\n@ElectroTallinnBot",

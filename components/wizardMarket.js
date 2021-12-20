@@ -3,6 +3,7 @@ const fileManagerHelper = require("../utils/FileManagerHelper.js");
 const db = require("../db.js");
 const axios = require('axios').default;
 const { v4: uuidv4 } = require('uuid');
+const utils = require("../utils/Utils.js");
 
 module.exports = {
   init: bot => {
@@ -168,8 +169,7 @@ module.exports = {
         photoUrl: userAvatarUrl,
         username: ctx.update.message.chat.username
       }
-      console.log(userData.photoUrl)
-      let response = await axios.post(process.env.BOT_AUTH, userData);
+      let response = await axios.post(`${utils.getApiBaseUrl()}/authentication/login/bot`, userData);
 
       // Scene vars
       ctx.scene.state.token = response.data.token;

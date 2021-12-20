@@ -4,6 +4,7 @@ const wizardMap = require("./components/wizardMap.js");
 const wizardMarket = require("./components/wizardMarket.js");
 const weather = require("./components/weather.js");
 const msg = require("./components/msg.js");
+const nearestLoc = require("./components/nearestLoc.js");
 const bot = new Telegraf(process.env.TELEGRAM_TOKEN);
 
 // ------------- Translation ------------- //
@@ -11,7 +12,7 @@ const bot = new Telegraf(process.env.TELEGRAM_TOKEN);
 const translations = require("./translation.json");
 translate = (path, ctx) => {
   let parts = path.split('.')
-  return parts.reduce((previousValue, currentValue) => previousValue[currentValue], translations[ctx.scene.state.locale]) || path
+  return parts.reduce((previousValue, currentValue) => previousValue[currentValue], (translations[ctx.scene.state.locale] || translations['en']) ) || path
 }
 
 // ------------- Wizards ------------- //
@@ -33,6 +34,7 @@ wizardMarket.initCommand(bot);
 
 // ------------- Components ------------- //
 
+nearestLoc.init(bot);
 weather.init(bot);
 msg.init(bot);
 

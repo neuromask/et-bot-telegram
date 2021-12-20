@@ -1,5 +1,6 @@
 const https = require('https');
 const { v4: uuidv4 } = require('uuid');
+require('dotenv').config();
 
 module.exports = {
     uuid: () => uuidv4(),
@@ -25,5 +26,8 @@ module.exports = {
             }
             req.end();
         });
+    },
+    getApiBaseUrl: () => {
+        return process.env.API_URL || 'https://app.electrotallinn.ee/api';
     }
 };
