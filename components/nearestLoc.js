@@ -6,9 +6,10 @@ module.exports = {
         
         bot.on('location', async ctx => {
             if (ctx.message.chat.type == 'private') {
+                console.log("REQUEST NEAREST - POS: " + ctx.message.location.latitude + ',' + ctx.message.location.longitude + " by USER: " + ctx.message.from.first_name);
+
                 // get info
                 ctx.scene.state.locale = ctx.message.from.language_code;
-                console.log("POS: " + ctx.message.location.latitude + ',' + ctx.message.location.longitude + " by USER: " + ctx.message.from.first_name);
                 ctx.scene.state.lat = ctx.message.location.latitude;
                 ctx.scene.state.lng = ctx.message.location.longitude;
                 
