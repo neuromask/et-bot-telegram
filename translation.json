@@ -159,6 +159,21 @@
                 "WATER": "💦 [Vesi]",
                 "AIR": "💨 [Õhk]"
             }
+        },
+        "weather": {
+            "descriptionText": "Praegu Tallinnas",
+            "tempText": "Temperatuur ümber",
+            "feelsText": "Minu tunnetest",
+            "m15": "🥶🥶 _Ebaseaduslik külmutamine, ole nagu allveelaev!_",
+            "m10": "🥶 _Külm külm, minimaalselt kolm jopet!_",
+            "m5": "😱 _Väga külm, olge nagu tank!_",
+            "m0": "😨 _Alla nulli, võtke külm käik!_",
+            "0": "😬 _Külm, võtke soojad riided!_",
+            "5": "😶‍🌫️ _Natuke külm, võtke keskmised riided._",
+            "10": "😉 _Natuke soe, vähem riideid_",
+            "15": "🤗 _Peaaegu suvi, let's go_",
+            "20": "🤪 _Suvi, minimaalselt riideid_",
+            "25": "🥵 _Kuum, ilma riieteta :)_"
         }
     }
 }

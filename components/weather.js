@@ -2,7 +2,7 @@ const OpenWeatherAPI = require("openweather-api-node")
 
 let weather = new OpenWeatherAPI({
     key: process.env.OWM,
-    locationName: "Tallinn",
+    locationName: "tallinn",
     units: "metric"
 })
 
@@ -19,7 +19,8 @@ module.exports = {
             weather.setLanguage(ctx.scene.state.locale);
 
             weather.getCurrent().then(async data => {
-                let temp = -16
+                //console.log(data.weather)
+                let temp = Math.round(data.weather.temp.cur)
                 let feels = Math.round(data.weather.feels_like.cur)
                 let answer = `ET⚡️ *Weather*\n\n`
                 answer += `• ${translate('weather.descriptionText', ctx)} *${data.weather.description}*\n`
