@@ -10,8 +10,12 @@ module.exports = {
     init: bot => {
         
         bot.command(["/weather", "/pogoda"], ctx => {
+
+            console.log("REQUEST WEATHER - LANG: " + ctx.message.from.language_code + " by USER: " + ctx.message.from.first_name);
+
             // language
             ctx.scene.state.locale = ctx.message.from.language_code;
+            if(ctx.scene.state.locale != 'en' && ctx.scene.state.locale != 'ru') ctx.scene.state.locale = 'en'
             weather.setLanguage(ctx.scene.state.locale);
 
             weather.getCurrent().then(async data => {
