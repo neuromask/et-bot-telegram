@@ -45,7 +45,7 @@
         "weather": {
             "descriptionText": "Currently in Tallinn",
             "tempText": "Temperature around",
-            "feelsText": "From my feelings",
+            "feelsText": "While riding feels like",
             "m15": "🥶🥶 _Illegal freezing, be like submarine!_",
             "m10": "🥶 _Cold freezing, three jackets minimum!_",
             "m5": "😱 _Very cold, be like tank!_",
@@ -104,7 +104,7 @@
         "weather": {
             "descriptionText": "Сейчас в Таллинне",
             "tempText": "Температура примерно",
-            "feelsText": "По моим ощущениям",
+            "feelsText": "При езде ощущается",
             "m15": "🥶🥶 _Нелегальный холод, одевайся как подводная лодка!_",
             "m10": "🥶 _Лютый мороз, накинь пару шуб!_",
             "m5": "😱 _Жесть как холодно, одевайся как танк!_",
@@ -162,8 +162,8 @@
         },
         "weather": {
             "descriptionText": "Praegu Tallinnas",
-            "tempText": "Temperatuur ümber",
-            "feelsText": "Minu tunnetest",
+            "tempText": "Temperatuur ümbes",
+            "feelsText": "Tunded sõidu ajal",
             "m15": "🥶🥶 _Ebaseaduslik külmutamine, ole nagu allveelaev!_",
             "m10": "🥶 _Külm külm, minimaalselt kolm jopet!_",
             "m5": "😱 _Väga külm, olge nagu tank!_",
