@@ -51,7 +51,7 @@ module.exports = {
         });
 
         bot.command("/app", ctx => {
-            bot.telegram.sendMessage(ctx.chat.id, "ET⚡️ *App*\n\n_https://app.electrotallinn.ee_", { disable_web_page_preview: true, parse_mode: "Markdown", disable_notification: true });
+            bot.telegram.sendMessage(ctx.chat.id, "ET⚡️ *App*\n\n_https://electrotallinn.ee_", { disable_web_page_preview: true, parse_mode: "Markdown", disable_notification: true });
         });
 
         bot.command("/map", ctx => {
@@ -62,11 +62,11 @@ module.exports = {
                 reply_markup: {
                     inline_keyboard: [
                         [
-                            { text: "🌏 Map", url: 'https://app.electrotallinn.ee/map' },
-                            { text: "🏆 Top Ranks", url: 'https://app.electrotallinn.ee/users/ranks' },
+                            { text: "🌏 Map", url: 'https://electrotallinn.ee/map' },
+                            { text: "🏆 Top Ranks", url: 'https://electrotallinn.ee/users/ranks' },
                         ],
                         [
-                            { text: "ℹ️ App", url: 'https://app.electrotallinn.ee' },
+                            { text: "ℹ️ App", url: 'https://electrotallinn.ee' },
                             { text: "📍 Add Point", url: 'https://t.me/electrotallinnbot?start' },
                         ]
                     ]
@@ -82,11 +82,11 @@ module.exports = {
                 reply_markup: {
                     inline_keyboard: [
                         [
-                            { text: "🛒 Market", url: 'https://app.electrotallinn.ee/market' },
-                            { text: "⚡ App", url: 'https://app.electrotallinn.ee' },
+                            { text: "🛒 Market", url: 'https://electrotallinn.ee/market' },
+                            { text: "⚡ App", url: 'https://electrotallinn.ee' },
                         ],
                         [
-                            { text: "👤 Profiles", url: 'https://app.electrotallinn.ee/users' },
+                            { text: "👤 Profiles", url: 'https://electrotallinn.ee/users' },
                             { text: "💰 Sell", url: 'https://t.me/electrotallinnbot?start' },
                         ]
                     ]

@@ -8,7 +8,7 @@
             "categoryText": "4️⃣ *Category*\nSelect a product category.",
             "photoText": "5️⃣ *Photo*\nTake a photo of the product or download from your phone library. Max 3 photo.",
             "morePhotoText": "Add another photo or press *Finish*",
-            "finalText": "👍 <b>Thank you</b> 👍\nProduct added to the <a href='https://app.electrotallinn.ee/market'>market</a>.",
+            "finalText": "👍 <b>Thank you</b> 👍\nProduct added to the <a href='https://electrotallinn.ee/market'>market</a>.",
             "leaveText": "Ended.",
             "categoryButtonText": {
                 "TRANSPORT": "🛴 [Transport]",
@@ -32,7 +32,7 @@
             "coordsText": "4️⃣ *Location*\nPlease select your current location or use marker for custom location.",
             "coordsBtnText": "My current location.",
             "photoText": "5️⃣ *Photo*\nPlease take one picture of the object in landscape mode.",
-            "finalText": "👍 <b>Thank you</b> 👍\nLocation will be approved in 24h and added to the <a href='https://app.electrotallinn.ee/map'>map</a>.",
+            "finalText": "👍 <b>Thank you</b> 👍\nLocation will be approved in 24h and added to the <a href='https://electrotallinn.ee/map'>map</a>.",
             "leaveText": "Ended.",
             "errorPhotoGroupText": "Please send one photo of the object, not the album.",
             "typeButtonText": {
@@ -67,7 +67,7 @@
             "categoryText": "4️⃣ *Категория*\nВыберите категорию товара.",
             "photoText": "5️⃣ *Фото*\nСделайте фото товара или загрузите из библиотеки телефона. До треёх фото.",
             "morePhotoText": "Добавьте еще одну фотографию или нажмите *Завершить*",
-            "finalText": "👍 <b>Спасибо</b> 👍\nТовар добавлен в <a href='https://app.electrotallinn.ee/ru/market'>маркет</a>.",
+            "finalText": "👍 <b>Спасибо</b> 👍\nТовар добавлен в <a href='https://electrotallinn.ee/ru/market'>маркет</a>.",
             "leaveText": "Завершено.",
             "categoryButtonText": {
                 "TRANSPORT": "🛴 [Транспорт]",
@@ -91,7 +91,7 @@
             "coordsText": "4️⃣ *Место расположения*\nДля текущей позиции - нажмите на кнопу либо поставьте точку(локацию) на карте через 'скрепку'",
             "coordsBtnText": "Мое текущее местоположение.",
             "photoText": "5️⃣ *Фото*\nПожалуйста, сделайте одно фото объекта в ландшафтном режиме или загрузите из библиотеки телефона.",
-            "finalText": "👍 <b>Спасибо</b> 👍\nМестоположение будет одобрено в течение 24 часов и добавлено на <a href='https://app.electrotallinn.ee/map'>карту</a>.",
+            "finalText": "👍 <b>Спасибо</b> 👍\nМестоположение будет одобрено в течение 24 часов и добавлено на <a href='https://electrotallinn.ee/map'>карту</a>.",
             "leaveText": "Завершено.",
             "errorPhotoGroupText": "Пришлите, пожалуйста, одну фотографию объекта, а не альбом.",
             "typeButtonText": {
@@ -126,7 +126,7 @@
             "categoryText": "4️⃣ *Kategooria*\nValige tootekategooria.",
             "photoText": "5️⃣ *Foto*\nTehke tootest foto või laadige alla oma telefoniraamatukogust. Max 3 foto.",
             "morePhotoText": "Lisage veel üks foto või vajutage nuppu *Lõpeta*",
-            "finalText": "👍 <b>Täname</b> 👍\nKaup on lisatud <a href='https://app.electrotallinn.ee/market'>turule</a>.",
+            "finalText": "👍 <b>Täname</b> 👍\nKaup on lisatud <a href='https://electrotallinn.ee/market'>turule</a>.",
             "leaveText": "Lõppenud.",
             "categoryButtonText": {
                 "TRANSPORT": "🛴 [Transport]",
@@ -150,7 +150,7 @@
             "coordsText": "4️⃣ *Asukoht*\nPalun valige oma praegune asukoht või kasutage kohandatud asukoha jaoks markerit.",
             "coordsBtnText": "Minu praegune asukoht.",
             "photoText": "5️⃣ *Foto*\nPalun saatke üks objekti foto horisontaalrežiimis.",
-            "finalText": "👍 <b>Täname</b> 👍\nAsukoht kinnitatakse 24 tunni jooksul ja lisatakse <a href='https://app.electrotallinn.ee/map'>kaardile</a>.",
+            "finalText": "👍 <b>Täname</b> 👍\nAsukoht kinnitatakse 24 tunni jooksul ja lisatakse <a href='https://electrotallinn.ee/map'>kaardile</a>.",
             "leaveText": "Lõppenud.",
             "errorPhotoGroupText": "Palun saatke üks objekti foto, mitte album.",
             "typeButtonText": {
