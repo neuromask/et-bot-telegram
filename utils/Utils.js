@@ -28,6 +28,6 @@ module.exports = {
         });
     },
     getApiBaseUrl: () => {
-        return process.env.API_URL || 'https://app.electrotallinn.ee/api';
+        return process.env.API_URL || 'https://electrotallinn.ee/api';
     }
 };
