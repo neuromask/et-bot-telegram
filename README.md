@@ -1,6 +1,6 @@
 📦 Telegram bot, Telegraf
 
-![logo](https://electrotallinn.ee/files/logo-bot-avatar.svg)
+![logo](https://store.electrotallinn.ee/logo-bot-avatar.svg)
 
 ## Getting Started
 
