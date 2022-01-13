@@ -161,7 +161,11 @@ module.exports = {
     // ------------- Filters ------------- //
 
     bot.on('message', ctx => {
-      //console.log(ctx.message)
+      console.log(ctx.message.chat.id)
+      // main -1001298173179
+      // service 
+      // chat 
+      // test -1001268816756
       if (ctx.message.text && ctx.message.chat.id == '-1001268816756' || ctx.message.chat.id == '-1001298173179') {
         if (censure.some(word => ctx.message.text.toString().toLowerCase().includes(word))) {
           ctx.replyWithMarkdown(`*${ctx.message.from.first_name}*, не ругаемся :) - _сообщение удалено_`);
