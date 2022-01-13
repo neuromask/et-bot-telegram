@@ -160,15 +160,9 @@ module.exports = {
 
     // ------------- Filters ------------- //
 
-/*     bot.hears(censure, ctx => {
-      console.log(ctx.message)
-      ctx.replyWithMarkdown(`*${ctx.message.from.first_name}*, не ругаемся :) - _сообщение удалено_`);
-      ctx.deleteMessage();
-    });
- */
     bot.on('message', ctx => {
-      console.log(ctx.message)
-      if (ctx.message.text && ctx.message.chat.id == '-1001268816756' || ctx.message.chat.id == '-1001209268032') {
+      //console.log(ctx.message)
+      if (ctx.message.text && ctx.message.chat.id == '-1001268816756' || ctx.message.chat.id == '-1001298173179') {
         if (censure.some(word => ctx.message.text.toString().toLowerCase().includes(word))) {
           ctx.replyWithMarkdown(`*${ctx.message.from.first_name}*, не ругаемся :) - _сообщение удалено_`);
           ctx.deleteMessage();
