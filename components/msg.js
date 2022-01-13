@@ -161,12 +161,12 @@ module.exports = {
     // ------------- Filters ------------- //
 
     bot.on('message', ctx => {
-      console.log(ctx.message.chat.id)
+      //console.log(ctx.message.chat.id)
       // main -1001298173179
-      // service 
-      // chat 
+      // service -1001376734463
+      // chat -1001239924457
       // test -1001268816756
-      if (ctx.message.text && ctx.message.chat.id == '-1001268816756' || ctx.message.chat.id == '-1001298173179') {
+      if (ctx.message.text && ctx.message.chat.id != '-1001239924457') {
         if (censure.some(word => ctx.message.text.toString().toLowerCase().includes(word))) {
           ctx.replyWithMarkdown(`*${ctx.message.from.first_name}*, не ругаемся :) - _сообщение удалено_`);
           ctx.deleteMessage();
