@@ -47,6 +47,14 @@ module.exports = {
       bot.telegram.sendMessage(ctx.chat.id, botCommands(ctx.message.from.language_code), { disable_web_page_preview: true, parse_mode: "Markdown", disable_notification: true });
     });
 
+    bot.command("/test", async ctx => {
+      console.log(ctx.message.from)
+      let avatarObject = await ctx.telegram.getUserProfilePhotos(ctx.update.message.from.id, 0, 1)
+      let getUrl = await ctx.telegram.getFileLink(avatarObject.photos[0][2].file_id);
+      const userAvatarUrl = getUrl.href;
+      console.log(userAvatarUrl)
+    });
+
     bot.command("/ali", ctx => {
       bot.telegram.sendMessage(ctx.chat.id, "ET⚡️ *Aliexpress links*\n\n_https://bit.ly/2DVyl1d_", { disable_web_page_preview: true, parse_mode: "Markdown", disable_notification: true });
     });
@@ -167,7 +175,7 @@ module.exports = {
       // chat -1001239924457
       // test -1001268816756
       if (ctx.message.text && ctx.message.chat.id != '-1001239924457') {
-        if (censure.some(word => ctx.message.text.toString().toLowerCase().includes(word))) {
+        if (censure.some(word => ctx.message.text.toString().toLowerCase().split(" ").includes(word))) {
           ctx.replyWithMarkdown(`*${ctx.message.from.first_name}*, не ругаемся :) - _сообщение удалено_`);
           ctx.deleteMessage();
         }
