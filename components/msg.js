@@ -95,7 +95,7 @@ module.exports = {
               { text: "⚡ App", url: 'https://electrotallinn.ee' },
             ],
             [
-              { text: "👤 Group", url: '@electrotallinn_market' },
+              { text: "👤 Group", url: 'https://t.me/electrotallinn_market' },
               { text: "💰 Bot Sell", url: 'https://t.me/electrotallinnbot?start' },
             ]
           ]
