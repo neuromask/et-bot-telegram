@@ -174,7 +174,7 @@ module.exports = {
       // service -1001376734463
       // chat -1001239924457
       // test -1001268816756
-      if (ctx.message.text && ctx.message.chat.id != '-1001239924457') {
+      if (ctx.message.text && ctx.message.chat.id != '-1001239924457' || ctx.message.chat.id != '-1001207578072') {
         if (censure.some(word => ctx.message.text.toString().toLowerCase().split(" ").includes(word))) {
           ctx.replyWithMarkdown(`*${ctx.message.from.first_name}*, не ругаемся :) - _сообщение удалено_`);
           ctx.deleteMessage();
