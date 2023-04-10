@@ -170,11 +170,11 @@ module.exports = {
 
     bot.on('message', ctx => {
       //console.log(ctx.message.chat.id)
-      // main -1001298173179
-      // service -1001376734463
-      // chat -1001239924457
+      // main ctx.message.chat.id -1001298173179
+      // service ctx.message.message_thread_id 106266
+      // chat ctx.message.message_thread_id 106277
       // test -1001268816756
-      if (ctx.message.text && ctx.message.chat.id != '-1001239924457' && ctx.message.chat.id != '-1001207578072') {
+      if (ctx.message.text && ctx.message.message_thread_id != '106277' && ctx.message.chat.id != '-1001207578072') {
         if (censure.some(word => ctx.message.text.toString().toLowerCase().split(" ").includes(word))) {
           ctx.replyWithMarkdown(`*${ctx.message.from.first_name}*, не ругаемся :) - _сообщение удалено_`);
           ctx.deleteMessage();
