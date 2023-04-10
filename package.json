@@ -11,8 +11,8 @@
     "dotenv": "^16.0.3",
     "duckduckgo-images-api": "^1.0.5",
     "mysql": "^2.18.1",
-    "openweather-api-node": "^1.1.1",
     "telegraf": "^4.12.2",
+    "openweather-api-node": "^1.1.1",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
