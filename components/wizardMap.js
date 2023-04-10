@@ -146,7 +146,7 @@ module.exports = {
 
   initCommand: bot => {
     // command to start
-    bot.command("/add", async ctx => {
+    bot.command("add", async ctx => {
       if (ctx.message.chat.type != 'private') {
         ctx.scene.state.locale = ctx.message.from.language_code;
         ctx.replyWithMarkdown(translate('map.chatTypeText', ctx));

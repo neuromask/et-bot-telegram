@@ -1,4 +1,4 @@
-const OpenWeatherAPI = require("openweather-api-node")
+const { OpenWeatherAPI } = require("openweather-api-node")
 
 let weather = new OpenWeatherAPI({
     key: process.env.OWM,
@@ -9,7 +9,7 @@ let weather = new OpenWeatherAPI({
 module.exports = {
     init: bot => {
         
-        bot.command(["/weather", "/pogoda"], ctx => {
+        bot.command(["weather", "pogoda"], ctx => {
 
             console.log("REQUEST WEATHER - LANG: " + ctx.message.from.language_code + " by USER: " + ctx.message.from.first_name);
 
@@ -21,7 +21,7 @@ module.exports = {
             weather.getCurrent().then(async data => {
                 //console.log(data.weather)
                 let temp = Math.round(data.weather.temp.cur)
-                let feels = Math.round(data.weather.feels_like.cur)
+                let feels = Math.round(data.weather.feelsLike.cur)
                 let answer = `ET⚡️ *Weather*\n\n`
                 answer += `• 🌎 ${translate('weather.descriptionText', ctx)} *${data.weather.description}*\n`
                 answer += `• 🌡️ ${translate('weather.tempText', ctx)} *${temp}\u00B0С*\n`

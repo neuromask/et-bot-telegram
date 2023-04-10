@@ -1,4 +1,5 @@
 const { Telegraf, session, Scenes: { WizardScene, Stage }, Composer, Context, Markup } = require("telegraf");
+const { message } = require('telegraf/filters');
 require('dotenv').config();
 const wizardMap = require("./components/wizardMap.js");
 const wizardMarket = require("./components/wizardMarket.js");

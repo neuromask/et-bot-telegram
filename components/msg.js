@@ -38,16 +38,16 @@ module.exports = {
     bot.start((ctx) => ctx.reply(botCommands(ctx.message.from.language_code), { disable_web_page_preview: true, parse_mode: "Markdown", disable_notification: true }));
     // New member
     bot.on("new_chat_members", (ctx) => {
-      bot.telegram.sendMessage(ctx.chat.id, `<b>Welcome / Добро пожаловать, ${ctx.message.new_chat_member.first_name}!</b>\n ⚠️ <a href="https://t.me/electrotallinn_alerts/7">Ознакомься</a> с устройством группы в Телеграме! ⚠️ \n ⚠️ <a href="https://t.me/electrotallinn_alerts/7">Please read</a> group information in Telegram! ⚠️\n`,
+      bot.telegram.sendMessage(ctx.chat.id, `<b>Welcome / Добро пожаловать, ${ctx.message.new_chat_member.first_name}!</b>\n ⚠️ <a href="https://t.me/electrotallinn/106800/116732">Ознакомься</a> с устройством группы в Телеграме! ⚠️ \n ⚠️ <a href="https://t.me/electrotallinn/106800/116732">Please read</a> group information in Telegram! ⚠️\n`,
         { disable_web_page_preview: true, parse_mode: "HTML", disable_notification: true });
       ctx.replyWithSticker('CAACAgQAAxkBAAEKmPJgtu1nXdo4zdB0lKLHAAFzcsmOyl8AAj8KAAJrfPFTmXeoVb1qy_cfBA');
     });
 
-    bot.command("/help", ctx => {
+    bot.command("help", ctx => {
       bot.telegram.sendMessage(ctx.chat.id, botCommands(ctx.message.from.language_code), { disable_web_page_preview: true, parse_mode: "Markdown", disable_notification: true });
     });
 
-    bot.command("/test", async ctx => {
+    bot.command("test", async ctx => {
       console.log(ctx.message.from)
       let avatarObject = await ctx.telegram.getUserProfilePhotos(ctx.update.message.from.id, 0, 1)
       let getUrl = await ctx.telegram.getFileLink(avatarObject.photos[0][2].file_id);
@@ -55,15 +55,15 @@ module.exports = {
       console.log(userAvatarUrl)
     });
 
-    bot.command("/ali", ctx => {
+    bot.command("ali", ctx => {
       bot.telegram.sendMessage(ctx.chat.id, "ET⚡️ *Aliexpress links*\n\n_https://bit.ly/2DVyl1d_", { disable_web_page_preview: true, parse_mode: "Markdown", disable_notification: true });
     });
 
-    bot.command("/app", ctx => {
+    bot.command("app", ctx => {
       bot.telegram.sendMessage(ctx.chat.id, "ET⚡️ *App*\n\n_https://electrotallinn.ee_", { disable_web_page_preview: true, parse_mode: "Markdown", disable_notification: true });
     });
 
-    bot.command("/map", ctx => {
+    bot.command("map", ctx => {
       let botMessage = "ET⚡️ *Map*\n";
       bot.telegram.sendMessage(ctx.chat.id, botMessage, {
         disable_notification: true,
@@ -83,7 +83,7 @@ module.exports = {
       })
     });
 
-    bot.command("/market", ctx => {
+    bot.command("market", ctx => {
       let botMessage = "ET⚡️ *Market*\n";
       bot.telegram.sendMessage(ctx.chat.id, botMessage, {
         disable_notification: true,
@@ -95,7 +95,7 @@ module.exports = {
               { text: "⚡ App", url: 'https://electrotallinn.ee' },
             ],
             [
-              { text: "👤 Group", url: 'https://t.me/electrotallinn_market' },
+              { text: "👤 Group", url: 'https://t.me/electrotallinn/106273' },
               { text: "💰 Bot Sell", url: 'https://t.me/electrotallinnbot?start' },
             ]
           ]
@@ -103,14 +103,14 @@ module.exports = {
       })
     });
 
-    bot.command("/say", ctx => {
+    bot.command("say", ctx => {
       const tell = ctx.message.text;
       const say = tell.substr(tell.indexOf(" ") + 1);
       ctx.deleteMessage();
       bot.telegram.sendMessage(ctx.chat.id, `${say}`, { disable_web_page_preview: true, parse_mode: "Markdown" });
     });
 
-    bot.command("/social", ctx => {
+    bot.command("social", ctx => {
       let botMessage = "ET⚡️ *Social media links*\n";
       //ctx.deleteMessage();
       bot.telegram.sendMessage(ctx.chat.id, botMessage, {
@@ -138,7 +138,7 @@ module.exports = {
       bot.telegram.sendMessage(ctx.chat.id, "text", { disable_web_page_preview: true, parse_mode: "Markdown", disable_notification: true }).then(({ message_id }) => { setTimeout(() => { ctx.deleteMessage(message_id) }, 15000) });
     });
 
-    bot.command("/pic", (ctx) => {
+    bot.command("pic", (ctx) => {
       const request = ctx.message.text;
       let search;
       if (request.split(" ").length > 1) {
