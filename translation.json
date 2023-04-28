@@ -27,7 +27,7 @@
         },
         "map": {
             "chatTypeText": "⚠️ *[Warning]* ⚠️\n\nThis command is only for private chat. Lets talk in private:\n@ElectroTallinnBot",
-            "titleText": "ET⚡️ *Add point*\n\n⚠️ Before adding a point, please make sure that the outlet is working and same point has not been previously added to the map!\n\n1️⃣ *Name*\nPlease name the place, write address, company or street name near the object.",
+            "titleText": "ET⚡️ *Add point*\n\n⚠️ Before adding a point, make sure that such a point has not been previously added to the map and in the case of a charging place - the socket is working!\n\n1️⃣ *Name*\nPlease name the place, write address, company or street name near the object.",
             "descriptionText": "2️⃣ *Description*\nPlease describe place. Is it outside or inside? How to find it in place.",
             "typeText": "3️⃣ *Type*\nPlease select type of place.",
             "coordsText": "4️⃣ *Location*\nPlease select your current location or use marker for custom location.",
@@ -90,7 +90,7 @@
         },
         "map": {
             "chatTypeText": "⚠️ *[Предупреждение]* ⚠️\n\nЭта команда только для приватного чата. Поговорим наедине:\n@ElectroTallinnBot",
-            "titleText": "ET⚡️ *Добавить точку*\n\n⚠️ Перед добавлением точки убедитесь в том, что розетка работает и такая точка уже не добавлена ранее на карту!\n\n1️⃣ *Название*\nУкажите адрес, компанию или улицу рядом с объектом.",
+            "titleText": "ET⚡️ *Добавить точку*\n\n⚠️ Перед добавлением точки убедитесь в том, что такая точка не добавлена ранее на карту и в случае места для зарядки - розетка работает!\n\n1️⃣ *Название*\nУкажите адрес, компанию или улицу рядом с объектом.",
             "descriptionText": "2️⃣ *Описание*\nОпишите место. Это снаружи или внутри? Как найти на месте.",
             "typeText": "3️⃣ *Тип*\nПожалуйста, выберите тип места.",
             "coordsText": "4️⃣ *Место расположения*\nДля текущей позиции - нажмите на кнопу либо поставьте точку(локацию) на карте через 'скрепку'",
@@ -153,7 +153,7 @@
         },
         "map": {
             "chatTypeText": "⚠️ *[Hoiatus]* ⚠️\n\nSee käsk on mõeldud ainult privaatseks vestluseks. Räägime privaatselt:\n@ElectroTallinnBot",
-            "titleText": "ET⚡️ *Lisa punkti*\n\n⚠️ Enne punkti lisamist veenduge, et pistikupesa töötab ja et sellist punkti pole kaardile varem lisatud.!\n\n1️⃣ *Nimi*\nPalun nimatage koht, kirjutage objekti lähedale aadress, ettevõtte või tänava nimi.",
+            "titleText": "ET⚡️ *Lisa punkti*\n\n⚠️ Enne punkti lisamist veendu, et sellist punkti poleks varem kaardile lisatud ja laadimiskoha puhul - pistikupesa töötab!\n\n1️⃣ *Nimi*\nPalun nimatage koht, kirjutage objekti lähedale aadress, ettevõtte või tänava nimi.",
             "descriptionText": "2️⃣ *Kirjeldus*\nPalun kirjeldage kohta. Kas see on väljas või sees? Kuidas seda kohal leida.",
             "typeText": "3️⃣ *Tüüp*\nPalun valige koha tüüp.",
             "coordsText": "4️⃣ *Asukoht*\nPalun valige oma praegune asukoht või kasutage kohandatud asukoha jaoks markerit.",
