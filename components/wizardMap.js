@@ -39,7 +39,7 @@ module.exports = {
         })
       }
     }
-    const mapTypes = ["CHARGE", "REPAIR", "WATER", "AIR"]
+    const mapTypes = ["CHARGE", "REPAIR", "WATER", "AIR", "PINGPONG"]
 
 
 

@@ -41,7 +41,8 @@
                 "CHARGE": "⚡ [Charging]",
                 "REPAIR": "🛠️ [Repair]",
                 "WATER": "💦 [Water]",
-                "AIR": "💨 [Air]"
+                "AIR": "💨 [Air]",
+                "PINGPONG": "🏓 [Ping Pong]"
             }
         },
         "weather": {
@@ -103,7 +104,8 @@
                 "CHARGE": "⚡ [Зарядка]",
                 "REPAIR": "🛠️ [Ремонт]",
                 "WATER": "💦 [Вода]",
-                "AIR": "💨 [Воздух]"
+                "AIR": "💨 [Воздух]",
+                "PINGPONG": "🏓 [Пинг Понг]"
             }
         },
         "weather": {
@@ -165,7 +167,8 @@
                 "CHARGE": "⚡ [Laadimine]",
                 "REPAIR": "🛠️ [Remont]",
                 "WATER": "💦 [Vesi]",
-                "AIR": "💨 [Õhk]"
+                "AIR": "💨 [Õhk]",
+                "PINGPONG": "🏓 [Ping Pong]"
             }
         },
         "weather": {
