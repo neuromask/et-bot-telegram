@@ -166,14 +166,26 @@ module.exports = {
     bot.hears("hi", (ctx) => ctx.reply("*Hey* there", { disable_web_page_preview: true, parse_mode: "Markdown", disable_notification: true }));
     bot.hears("map", (ctx) => ctx.replyWithHTML("<a href='https://map.electrotallinn.ee'>Map</a>", { disable_web_page_preview: true, disable_notification: true }));
 
+    bot.on('location', async ctx => {
+      //console.log(ctx.message.message_thread_id)
+      //if (ctx.message.message_thread_id == '106281' || ctx.message.message_thread_id == 'undefined') {}
+      if (ctx.message.chat.id == '-1001298173179' && ctx.message.from.is_bot == false) {
+        ctx.sendMessage(-1001298173179, { message_thread_id: 143695, text: `<b>ET⚡️Location</b>\n\n🚀 <b>${ctx.message.from.first_name}</b> начал движение!\n📍 Следите на карте ниже!`, disable_web_page_preview: true, parse_mode: "HTML", disable_notification: true });
+        ctx.forwardMessage(-1001298173179, { message_thread_id: 143695 }, ctx.chat.id, ctx.message.from.id);
+      }
+    });
+
     // ------------- Filters ------------- //
 
     bot.on('message', ctx => {
       //console.log(ctx.message.chat.id)
       // main ctx.message.chat.id -1001298173179
       // service ctx.message.message_thread_id 106266
-      // chat ctx.message.message_thread_id 106277
-      // test -1001268816756
+      // -- ctx.message.message_thread_id --
+      // general thread 
+      // rides thread 106281
+      // location thread 143695
+      // chat thread 106277
       if (ctx.message.text && ctx.message.message_thread_id != '106277' && ctx.message.chat.id != '-1001207578072') {
         if (censure.some(word => ctx.message.text.toString().toLowerCase().split(" ").includes(word))) {
           ctx.replyWithMarkdown(`*${ctx.message.from.first_name}*, не ругаемся :) - _сообщение удалено_`);
