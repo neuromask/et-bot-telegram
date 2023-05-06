@@ -49,11 +49,11 @@ module.exports = {
     });
 
     bot.command("ali", ctx => {
-      ctx.replyWithMarkdown("ET⚡️ *Aliexpress links*\n\n_https://bit.ly/2DVyl1d_", { disable_web_page_preview: true, disable_notification: true });
+      ctx.replyWithMarkdown("ET⚡️ *Aliexpress links*\n\n🛒 https://bit.ly/et-aliexpress", { disable_web_page_preview: true, disable_notification: true });
     });
 
     bot.command("app", ctx => {
-      ctx.replyWithMarkdown("ET⚡️ *App*\n\n_https://electrotallinn.ee_", { disable_web_page_preview: true, disable_notification: true });
+      ctx.replyWithMarkdown("ET⚡️ *App*\n\n🌐 https://electrotallinn.ee_", { disable_web_page_preview: true, disable_notification: true });
     });
 
     bot.command("say", ctx => {
