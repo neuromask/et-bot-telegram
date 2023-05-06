@@ -60,7 +60,7 @@ module.exports = {
     });
 
     bot.command("app", ctx => {
-      bot.telegram.sendMessage(ctx.chat.id, "ET⚡️ *App*\n\n_https://electrotallinn.ee_", { disable_web_page_preview: true, parse_mode: "Markdown", disable_notification: true });
+      bot.telegram.sendMessage(ctx.chat.id, message_thread_id, "ET⚡️ *App*\n\n_https://electrotallinn.ee_", { disable_web_page_preview: true, parse_mode: "Markdown", disable_notification: true });
     });
 
     bot.command("map", ctx => {
