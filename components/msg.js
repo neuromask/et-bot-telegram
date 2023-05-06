@@ -1,5 +1,6 @@
 const { image_search, image_search_generator } = require("duckduckgo-images-api");
 const censure = require("../assets/censure.json");
+const { Markup } = require("telegraf");
 
 function botCommands(lang) {
   if (lang == 'ru') {
@@ -63,49 +64,6 @@ module.exports = {
       ctx.replyWithMarkdown("ET⚡️ *App*\n\n_https://electrotallinn.ee_", { disable_web_page_preview: true, disable_notification: true });
     });
 
-    bot.command("map", ctx => {
-      let botMessage = "ET⚡️ *Map*\n\n";
-      bot.telegram.sendMessage({
-        chat_id: ctx.chat.id,
-        message_thread_id: ctx.message.message_thread_id,
-        text: botMessage,
-        disable_notification: true,
-        parse_mode: "Markdown",
-        reply_markup: {
-          inline_keyboard: [
-            [
-              { text: "🌏 Map", url: 'https://electrotallinn.ee/map' },
-              { text: "🏆 Top Ranks", url: 'https://electrotallinn.ee/users/ranks' },
-            ],
-            [
-              { text: "ℹ️ App", url: 'https://electrotallinn.ee' },
-              { text: "📍 Add Point", url: 'https://t.me/electrotallinnbot?start' },
-            ]
-          ]
-        }
-      })
-    });
-
-    bot.command("market", ctx => {
-      let botMessage = "ET⚡️ *Market*\n";
-      bot.telegram.sendMessage(ctx.chat.id, botMessage, {
-        disable_notification: true,
-        parse_mode: "Markdown",
-        reply_markup: {
-          inline_keyboard: [
-            [
-              { text: "🛒 Market", url: 'https://electrotallinn.ee/market' },
-              { text: "⚡ App", url: 'https://electrotallinn.ee' },
-            ],
-            [
-              { text: "👤 Group", url: 'https://t.me/electrotallinn/106273' },
-              { text: "💰 Bot Sell", url: 'https://t.me/electrotallinnbot?start' },
-            ]
-          ]
-        }
-      })
-    });
-
     bot.command("say", ctx => {
       const tell = ctx.message.text;
       const say = tell.substr(tell.indexOf(" ") + 1);
@@ -113,27 +71,60 @@ module.exports = {
       bot.telegram.sendMessage(ctx.chat.id, `${say}`, { disable_web_page_preview: true, parse_mode: "Markdown" });
     });
 
-    bot.command("social", ctx => {
-      let botMessage = "ET⚡️ *Social media links*\n";
-      //ctx.deleteMessage();
-      bot.telegram.sendMessage(ctx.chat.id, botMessage, {
-        disable_notification: true,
+    bot.command("map", ctx => {
+      return ctx.reply(
+        "ET⚡️ *Map*\n\n", {
+        disable_notification: true, 
         parse_mode: "Markdown",
-        reply_markup: {
-          inline_keyboard: [
-            [
-              { text: "⚡️ Facebook", url: 'https://www.facebook.com/groups/electrotallinn' },
-              { text: "⚡️ Instagram", url: 'https://www.instagram.com/electrotallinn' },
-              { text: "⚡️ VK", url: 'https://vk.com/electrotallinn' }
-            ],
-            [
-              { text: "⚡️ Youtube", url: 'https://www.youtube.com/electrotallinn' },
-              { text: "⚡️ Flickr", url: 'https://www.flickr.com/electrotallinn' },
-              { text: "⚡️ Reddit", url: 'https://www.reddit.com/r/electrotallinn' }
-            ],
+        ...Markup.inlineKeyboard([
+          [
+            { text: "🌏 Map", url: 'https://electrotallinn.ee/map' },
+            { text: "🏆 Top Ranks", url: 'https://electrotallinn.ee/users/ranks' },
+          ],
+          [
+            { text: "ℹ️ App", url: 'https://electrotallinn.ee' },
+            { text: "📍 Add Point", url: 'https://t.me/electrotallinnbot?start' },
           ]
-        }
-      })
+        ]).resize(),
+      });
+    });
+
+    bot.command("market", ctx => {
+      return ctx.reply(
+        "ET⚡️ *Market*\n\n", {
+        disable_notification: true, 
+        parse_mode: "Markdown",
+        ...Markup.inlineKeyboard([
+          [
+            { text: "🛒 Market", url: 'https://electrotallinn.ee/market' },
+            { text: "⚡ App", url: 'https://electrotallinn.ee' },
+          ],
+          [
+            { text: "👤 Group", url: 'https://t.me/electrotallinn/106273' },
+            { text: "💰 Bot Sell", url: 'https://t.me/electrotallinnbot?start' },
+          ]
+        ]).resize(),
+      });
+    });
+
+    bot.command("social", ctx => {
+      return ctx.reply(
+        "ET⚡️ *Social media links*\n\n", {
+        disable_notification: true, 
+        parse_mode: "Markdown",
+        ...Markup.inlineKeyboard([
+          [
+            { text: "⚡️ Facebook", url: 'https://www.facebook.com/groups/electrotallinn' },
+            { text: "⚡️ Instagram", url: 'https://www.instagram.com/electrotallinn' },
+            { text: "⚡️ VK", url: 'https://vk.com/electrotallinn' }
+          ],
+          [
+            { text: "⚡️ Youtube", url: 'https://www.youtube.com/electrotallinn' },
+            { text: "⚡️ Flickr", url: 'https://www.flickr.com/electrotallinn' },
+            { text: "⚡️ Reddit", url: 'https://www.reddit.com/r/electrotallinn' }
+          ],
+        ]).resize(),
+      });
     });
 
     //bot.on("sticker", (ctx) => ctx.reply("👍"));

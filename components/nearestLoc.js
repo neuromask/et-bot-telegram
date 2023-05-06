@@ -20,7 +20,7 @@ module.exports = {
             }
 
             if (ctx.message.chat.id == '-1001298173179' && ctx.message.from.is_bot == false) {
-                ctx.sendMessage(-1001298173179, { message_thread_id: 143695, text: `<b>ET⚡️Location</b>\n\n🚀 <b>${ctx.message.from.first_name}</b> начал движение!\n📍 Следите на карте. <a href='https://t.me/electrotallinn/${chat_id}/${message_id}'><u><i>Оригинальное сообщение</u></i></a>`, disable_web_page_preview: true, parse_mode: "HTML", disable_notification: true });
+                ctx.sendMessage(-1001298173179, { message_thread_id: 143695, text: `<b>ET⚡️Location</b>\n\n🚀 <b>${ctx.message.from.first_name}</b> начал движение!\n📍 Следите на карте ниже!`, disable_web_page_preview: true, parse_mode: "HTML", disable_notification: true });
                 ctx.forwardMessage(-1001298173179, { message_thread_id: 143695 }, ctx.chat.id, ctx.message.from.id);
             }
             
