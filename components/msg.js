@@ -56,7 +56,7 @@ module.exports = {
     });
 
     bot.command("ali", ctx => {
-      bot.telegram.sendMessage(ctx.chat.id, "ET⚡️ *Aliexpress links*\n\n_https://bit.ly/2DVyl1d_", { disable_web_page_preview: true, parse_mode: "Markdown", disable_notification: true });
+      bot.telegram.sendMessage(ctx.chat.id, ctx.message.message_thread_id, "ET⚡️ *Aliexpress links*\n\n_https://bit.ly/2DVyl1d_", { disable_web_page_preview: true, parse_mode: "Markdown", disable_notification: true });
     });
 
     bot.command("app", ctx => {
