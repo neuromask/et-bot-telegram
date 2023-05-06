@@ -64,8 +64,11 @@ module.exports = {
     });
 
     bot.command("map", ctx => {
-      let botMessage = "ET⚡️ *Map*\n";
-      bot.telegram.sendMessage(ctx.chat.id, botMessage, {
+      let botMessage = "ET⚡️ *Map*\n\n";
+      bot.telegram.sendMessage({
+        chat_id: ctx.chat.id,
+        message_thread_id: ctx.message.message_thread_id,
+        text: botMessage,
         disable_notification: true,
         parse_mode: "Markdown",
         reply_markup: {
