@@ -56,11 +56,11 @@ module.exports = {
     });
 
     bot.command("ali", ctx => {
-      bot.telegram.sendMessage(ctx.chat.id, ctx.message.message_thread_id, "ET⚡️ *Aliexpress links*\n\n_https://bit.ly/2DVyl1d_", { disable_web_page_preview: true, parse_mode: "Markdown", disable_notification: true });
+      ctx.replyWithMarkdown("ET⚡️ *Aliexpress links*\n\n_https://bit.ly/2DVyl1d_", { disable_web_page_preview: true, parse_mode: "Markdown", disable_notification: true });
     });
 
     bot.command("app", ctx => {
-      bot.telegram.sendMessage(ctx.chat.id, message_thread_id, "ET⚡️ *App*\n\n_https://electrotallinn.ee_", { disable_web_page_preview: true, parse_mode: "Markdown", disable_notification: true });
+      ctx.sendMessage({chat_id: ctx.chat.id, message_thread_id: ctx.message.message_thread_id, text: "ET⚡️ *App*\n\n_https://electrotallinn.ee_", disable_web_page_preview: true, parse_mode: "Markdown", disable_notification: true });
     });
 
     bot.command("map", ctx => {
