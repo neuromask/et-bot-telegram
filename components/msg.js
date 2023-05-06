@@ -45,15 +45,7 @@ module.exports = {
     });
 
     bot.command("help", ctx => {
-      bot.telegram.sendMessage(ctx.chat.id, botCommands(ctx.message.from.language_code), { disable_web_page_preview: true, parse_mode: "Markdown", disable_notification: true });
-    });
-
-    bot.command("test", async ctx => {
-      console.log(ctx.message.from)
-      let avatarObject = await ctx.telegram.getUserProfilePhotos(ctx.update.message.from.id, 0, 1)
-      let getUrl = await ctx.telegram.getFileLink(avatarObject.photos[0][2].file_id);
-      const userAvatarUrl = getUrl.href;
-      console.log(userAvatarUrl)
+      ctx.replyWithMarkdown(botCommands(ctx.message.from.language_code), { disable_web_page_preview: true, disable_notification: true });
     });
 
     bot.command("ali", ctx => {
@@ -127,6 +119,15 @@ module.exports = {
       });
     });
 
+    // avatar url
+    bot.command("ava", async ctx => {
+      console.log(ctx.message.from)
+      let avatarObject = await ctx.telegram.getUserProfilePhotos(ctx.update.message.from.id, 0, 1)
+      let getUrl = await ctx.telegram.getFileLink(avatarObject.photos[0][2].file_id);
+      const userAvatarUrl = getUrl.href;
+      console.log(userAvatarUrl)
+    });
+
     //bot.on("sticker", (ctx) => ctx.reply("👍"));
     bot.action("timeout-msg", ctx => {
       bot.telegram.sendMessage(ctx.chat.id, "text", { disable_web_page_preview: true, parse_mode: "Markdown", disable_notification: true }).then(({ message_id }) => { setTimeout(() => { ctx.deleteMessage(message_id) }, 15000) });
@@ -163,11 +164,9 @@ module.exports = {
     // ------------- Filters ------------- //
 
     bot.on('message', ctx => {
-      //console.log(ctx.message.chat.id)
       // main ctx.message.chat.id -1001298173179
-      // service ctx.message.message_thread_id 106266
-      // -- ctx.message.message_thread_id --
-      // general thread 
+      // general thread 1
+      // service thread 106266
       // rides thread 106281
       // location thread 143695
       // chat thread 106277
