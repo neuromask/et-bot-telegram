@@ -22,9 +22,16 @@ module.exports = {
                 //console.log(data.weather)
                 let temp = Math.round(data.weather.temp.cur)
                 let feels = Math.round(data.weather.feelsLike.cur)
+                let wDeg = Math.round(data.weather.wind.deg)
+                let wDir
+                if (wDeg < 45 || wDeg > 315) wDir = translate('weather.windNorthText', ctx)
+                else if (wDeg >= 45 && wDeg < 135) wDir = translate('weather.windEastText', ctx)
+                else if (wDeg >= 135 && wDeg < 225) wDir = translate('weather.windSouthText', ctx)
+                else if (wDeg >= 225 && wDeg <= 315) wDir = translate('weather.windWestText', ctx)
                 let answer = `ET⚡️ *Weather*\n\n`
                 answer += `• 🌎 ${translate('weather.descriptionText', ctx)} *${data.weather.description}*\n`
                 answer += `• 🌡️ ${translate('weather.tempText', ctx)} *${temp}\u00B0С*\n`
+                answer += `• 💨 ${wDir} ${translate('weather.windText', ctx)} *${data.weather.wind.speed} m/s*\n`
                 answer += `• 🛴 ${translate('weather.feelsText', ctx)} *${feels}\u00B0С*\n\n`
                 if (temp < -15) answer += `${translate('weather.m15', ctx)}`
                 else if (temp < -10) answer += `${translate('weather.m10', ctx)}`
