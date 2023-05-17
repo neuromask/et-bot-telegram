@@ -39,7 +39,7 @@ module.exports = {
     bot.start((ctx) => ctx.reply(botCommands(ctx.message.from.language_code), { disable_web_page_preview: true, parse_mode: "Markdown", disable_notification: true }));
     // New member
     bot.on("new_chat_members", (ctx) => {
-      bot.telegram.sendMessage(ctx.chat.id, `<b>Welcome / Добро пожаловать, ${ctx.message.new_chat_member.first_name}!</b>\n ⚠️ <a href="https://t.me/electrotallinn/106800/116732">Ознакомься</a> с устройством группы в Телеграме! ⚠️ \n ⚠️ <a href="https://t.me/electrotallinn/106800/116732">Please read</a> group information in Telegram! ⚠️\n`,
+      bot.telegram.sendMessage(ctx.chat.id, `<b>Welcome / Добро пожаловать, ${ctx.message.new_chat_member.first_name}!</b>\n ⚠️ <a href="https://t.me/electrotallinn/106800/106801">Ознакомься</a> с устройством группы в Телеграме! ⚠️ \n ⚠️ <a href="https://t.me/electrotallinn/106800/106801">Please read</a> group information in Telegram! ⚠️\n`,
         { disable_web_page_preview: true, parse_mode: "HTML", disable_notification: true });
       ctx.replyWithSticker('CAACAgQAAxkBAAEKmPJgtu1nXdo4zdB0lKLHAAFzcsmOyl8AAj8KAAJrfPFTmXeoVb1qy_cfBA');
     });
