@@ -19,10 +19,11 @@ module.exports = {
                 await ctx.replyWithPhoto(`${utils.getApiBaseUrl()}/locations/image/${response.data.imageName}`);
             }
 
+            /* Locations forward to loc thread
             if (ctx.message.chat.id == '-1001298173179' && ctx.message.from.is_bot == false) {
                 ctx.sendMessage(-1001298173179, { message_thread_id: 143695, text: `<b>ET⚡️Location</b>\n\n🚀 <b>${ctx.message.from.first_name}</b> начал движение!\n📍 Следите на карте ниже!`, disable_web_page_preview: true, parse_mode: "HTML", disable_notification: true });
                 ctx.forwardMessage(-1001298173179, { message_thread_id: 143695 }, ctx.chat.id, ctx.message.from.id);
-            }
+            } */
             
         });
 
