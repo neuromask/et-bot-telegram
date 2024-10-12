@@ -1,5 +1,6 @@
 const { image_search, image_search_generator } = require("duckduckgo-images-api");
 const censure = require("../assets/censure.json");
+const spam = require("../assets/spam.json");
 const { Markup } = require("telegraf");
 
 function botCommands(lang) {
@@ -162,6 +163,19 @@ module.exports = {
     bot.hears("map", (ctx) => ctx.replyWithHTML("<a href='https://map.electrotallinn.ee'>Map</a>", { disable_web_page_preview: true, disable_notification: true }));
 
     // ------------- Filters ------------- //
+
+    bot.on('message', ctx => {
+      if (ctx.message.text) {
+
+        //const matches = spam.every((word) => ctx.message.text.includes(word));
+        const msg = ctx.message.text
+        if (msg.includes("требуется быть ответственным") || msg.includes("Зарплата по факту") ) {
+          ctx.deleteMessage();
+        }
+
+      }
+
+    });
 
     bot.on('message', ctx => {
       // main ctx.message.chat.id -1001298173179
