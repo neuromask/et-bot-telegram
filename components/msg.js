@@ -167,9 +167,13 @@ module.exports = {
     bot.on('message', ctx => {
       if (ctx.message.text) {
 
+        //if (spam.some(word => ctx.message.text.toString().toLowerCase().includes(word))) {
+        //  ctx.deleteMessage();
+        //}
+
         //const matches = spam.every((word) => ctx.message.text.includes(word));
         const msg = ctx.message.text
-        if (msg.includes("требуется быть ответственным") || msg.includes("Зарплата по факту" || msg.includes("Стабильные выплаты") || msg.includes("жми на слово")) ) {
+        if (msg.includes("требуется быть ответственным") || msg.includes("Зарплата по факту") || msg.includes("Стабильные выплаты") || msg.includes("жми на слово") ) {
           ctx.deleteMessage();
         }
 
