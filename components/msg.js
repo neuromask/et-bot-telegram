@@ -169,7 +169,7 @@ module.exports = {
 
         //const matches = spam.every((word) => ctx.message.text.includes(word));
         const msg = ctx.message.text
-        if (msg.includes("требуется быть ответственным") || msg.includes("Зарплата по факту") ) {
+        if (msg.includes("требуется быть ответственным") || msg.includes("Зарплата по факту" || msg.includes("Стабильные выплаты") || msg.includes("жми на слово")) ) {
           ctx.deleteMessage();
         }
 
